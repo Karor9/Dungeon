@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://bhsefxha4ah23"]
+
+[node name="Button" type="Button"]
+custom_minimum_size = Vector2(0, 55)
+size_flags_horizontal = 3
+focus_mode = 0
+text = "[Building]"
+icon_alignment = 2
+expand_icon = true

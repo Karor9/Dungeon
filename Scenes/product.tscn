@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://b47mkukc3pfue"]
+
+[ext_resource type="Texture2D" uid="uid://cl87ypaor331g" path="res://icon.svg" id="1_k0pw0"]
+
+[node name="Product" type="Button"]
+custom_minimum_size = Vector2(0, 75)
+focus_mode = 0
+text = "[Product]
+[Count]
+"
+icon = ExtResource("1_k0pw0")
+expand_icon = true

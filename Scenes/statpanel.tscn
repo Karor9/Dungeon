@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://cwy55a5i4epni"]
+
+[node name="Panel" type="Panel"]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.167
+
+[node name="StatName" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.8
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 12.0
+offset_bottom = -12.0
+theme_override_font_sizes/normal_font_size = 36
+bbcode_enabled = true
+text = "[Statname]
+"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.8
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 12.0
+offset_bottom = -12.0
+theme_override_font_sizes/normal_font_size = 36
+text = "15"

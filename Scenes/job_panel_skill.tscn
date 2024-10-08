@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://gi4rboqw8u1f"]
+
+[node name="JobPanelSkill" type="Panel"]
+custom_minimum_size = Vector2(0, 65)
+size_flags_horizontal = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.8
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 15.0
+offset_bottom = -15.0
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "[JobSkillName]"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.8
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 10.0
+offset_bottom = -10.0
+theme_override_font_sizes/normal_font_size = 32
+text = "[15]"
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -10.0
+offset_right = 4.0
+max_value = 1.0
+value = 0.5
+show_percentage = false

@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://bm60fmnjxg6p2"]
+
+[node name="HeroButton" type="Button"]
+custom_minimum_size = Vector2(0, 50)
+focus_mode = 0
+text = "[Name] [Level]"
+autowrap_mode = 3
+clip_text = true
