@@ -62,5 +62,6 @@ public partial class Globals : Node
         {
             Goods[i].Count += x;
         }
+        GetTree().Root.GetChild(2).GetChild(0).Call("ChangeCountGoods");
     }
 }

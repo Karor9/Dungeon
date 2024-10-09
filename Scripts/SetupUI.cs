@@ -58,4 +58,21 @@ public partial class SetupUI : CanvasLayer
 			container.AddChild(element);
 		}
 	}
+
+	public void ChangeGoodText(int i)
+	{
+		Button label = (Button)goodsBox.GetChild(i);
+		string val = label.Text;
+		val = val.Split("\n")[0];
+		val += "\n" + Globals.Instance.GetGood(i).Count.ToString();
+		label.Text = val;
+	}
+
+	public void ChangeCountGoods()
+	{
+		for (int i = 0; i < Globals.Instance.GetGoods().Count; i++)
+		{
+			ChangeGoodText(i);
+		}
+	}
 }

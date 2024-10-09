@@ -60,15 +60,20 @@ public partial class Console : Control
 		switch(commandsPart[0])
 		{
 			case "goods":
-				int count = 1000;
+				int count = 0;
 				if(commandsPart.Count == 1)
-					Globals.Instance.AddGoods(count);
-				else if(commandsPart.Count == 2)
+				{
+					count = 1000;
+				}
+				else if(commandsPart.Count >= 2)
 				{
 					count = int.TryParse(commandsPart[1], out var parsedCount) ? parsedCount : 0;
-					Globals.Instance.AddGoods(count); 
 				}
+				Globals.Instance.AddGoods(count);
 				result = $"Added [/color][color=blue]{count}[/color][color=red] goods!";
+				break;
+			case "hero":
+				
 				break;
 			default:
 				result = "Unknown command!";
