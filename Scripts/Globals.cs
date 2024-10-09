@@ -4,8 +4,6 @@ using System.Collections.Generic;
 
 public partial class Globals : Node
 {
-    [Export] bool _DEBUGMODE = true;
-
     public static Globals Instance {get; private set;}
     DateTime currentDate = new DateTime(1436, 5, 1);
     List<Human> Heroes = new List<Human>();
@@ -16,6 +14,7 @@ public partial class Globals : Node
     {
         Instance = this;
     }
+
 
     public void AddHero(Human human)
     {
@@ -55,5 +54,13 @@ public partial class Globals : Node
     public DateTime GetDate()
     {
         return currentDate;
+    }
+
+    public void AddGoods(int x)
+    {
+        for (int i = 0; i < Goods.Count; i++)
+        {
+            Goods[i].Count += x;
+        }
     }
 }

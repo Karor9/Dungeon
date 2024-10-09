@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-public partial class SetipUI : CanvasLayer
+public partial class SetupUI : CanvasLayer
 {
 	[ExportCategory("HeroesPanel")]
 	[Export] PackedScene heroButton;

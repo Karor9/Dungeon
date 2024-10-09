@@ -1,0 +1,54 @@
+[gd_scene load_steps=2 format=3 uid="uid://cwbtwsvfu2vxh"]
+
+[ext_resource type="Script" path="res://Scripts/Console.cs" id="1_v5lgy"]
+
+[node name="Console" type="Control" node_paths=PackedStringArray("console", "confirm", "history", "inputText")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_v5lgy")
+console = NodePath("CanvasLayer")
+confirm = NodePath("CanvasLayer/Button")
+history = NodePath("CanvasLayer/History")
+inputText = NodePath("CanvasLayer/Active")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="Color" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_right = 0.4
+anchor_bottom = 0.4
+color = Color(0.207843, 0.207843, 0.207843, 0.4)
+
+[node name="Active" type="LineEdit" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_top = 0.4
+anchor_right = 0.4
+anchor_bottom = 0.4
+offset_top = -35.0
+placeholder_text = "Input command"
+
+[node name="History" type="RichTextLabel" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_right = 0.4
+anchor_bottom = 0.4
+offset_left = 5.0
+offset_right = -5.0
+offset_bottom = -35.0
+bbcode_enabled = true
+text = "[color=red]"
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.4
+anchor_top = 0.4
+anchor_right = 0.4
+anchor_bottom = 0.4
+offset_left = -20.0
+offset_top = -35.0
+focus_mode = 0
+text = ">"
