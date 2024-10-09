@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 public partial class SetipUI : CanvasLayer
 {
@@ -8,6 +9,9 @@ public partial class SetipUI : CanvasLayer
 	[Export] PackedScene heroButton;
 	[Export] VBoxContainer heroBox;
 
+	[ExportCategory("GoodsPanel")]
+	[Export] PackedScene goodsButton;
+	[Export] VBoxContainer goodsBox;
 
 
 	public override void _Ready()
@@ -19,7 +23,9 @@ public partial class SetipUI : CanvasLayer
 
 		SetupUIElement<Human, Button>(Globals.Instance.GetHeroes(), heroButton, heroBox,
 		(hero) => hero.Name + "\n" + hero.GetClassName()); //TBD Show Hero Script
-		GD.Print(Globals.Instance.GetClasses().Count);
+
+		SetupUIElement<Goods, Button>(Globals.Instance.GetGoods().ToList(), goodsButton, goodsBox,
+		(good) => good.Name + "\n" + good.Count);
 	}
 
 	void SetupUIElement<TItem, TNode>(List<TItem> items, PackedScene sceneToInit, Container container,
