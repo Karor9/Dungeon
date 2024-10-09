@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="HumanClass" load_steps=2 format=3 uid="uid://devhtv7851d6h"]
+
+[ext_resource type="Script" path="res://Scripts/HumanClass.cs" id="1_duob0"]
+
+[resource]
+script = ExtResource("1_duob0")
+ClassName = "[Mage]"

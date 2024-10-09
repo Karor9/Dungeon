@@ -36,4 +36,14 @@ public class Human
 
         Birth = new DateTime(year, month, day);
     }
+
+    public void ChangeName(string newName)
+    {
+        Name = newName;
+    }
+
+    public string GetClassName()
+    {
+        return Globals.Instance.GetHumanClass(ClassId)?.ClassName ?? "Wrong ClassID";
+    }
 }

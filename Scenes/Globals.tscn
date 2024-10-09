@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://ckjn286cuk2e0"]
+[gd_scene load_steps=3 format=3 uid="uid://ckjn286cuk2e0"]
 
 [ext_resource type="Script" path="res://Scripts/Globals.cs" id="1_00y6l"]
+[ext_resource type="Resource" uid="uid://dh6ei4k0sidam" path="res://Resources/Class/ranger.tres" id="3_xrs3a"]
 
 [node name="Node" type="Node"]
 script = ExtResource("1_00y6l")
+Classes = [ExtResource("3_xrs3a")]
