@@ -8,6 +8,7 @@ public class Human
     public DateTime Birth {get; private set;}
     public int ClassId {get; private set;}
     public int[] Stats {get; private set;}
+    public bool IsAlive = true;
 
     public Human(string name, int classId)
     {

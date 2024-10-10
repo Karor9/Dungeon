@@ -9,6 +9,7 @@ public partial class SetupUI : CanvasLayer
 	[Export] PackedScene heroButton;
 	[Export] VBoxContainer heroBox;
 	[Export] Control heroPanel;
+	[Export] Control statsPanel;
 
 	[ExportCategory("GoodsPanel")]
 	[Export] PackedScene goodsButton;
@@ -40,10 +41,22 @@ public partial class SetupUI : CanvasLayer
 		className.Text = hero.GetClassName();
 		RichTextLabel age = (RichTextLabel)heroPanel.GetChild(2).GetChild(0);
 		age.Text = hero.GetAge().ToString();
+		SetupStats(hero.Stats);
     }
+
+	void SetupStats(int[] stats)
+	{
+		for (int i = 0; i < stats.Length; i++)
+		{
+			RichTextLabel statValue = (RichTextLabel)statsPanel.GetChild(i).GetChild(1);
+			statValue.Text = stats[i].ToString();
+		}
+	}
 
     public void AddHeroUIElement(Human hero, int id)
 	{
+		if(!hero.IsAlive)
+			return;
 		Node node = heroButton.Instantiate();
 		Button button = (Button)node;
 		button.Name = id.ToString();
@@ -51,6 +64,12 @@ public partial class SetupUI : CanvasLayer
 
 		button.Pressed += () => ChooseHero(id);
 		heroBox.AddChild(button);
+	}
+
+	public void DeleteHero(int id)
+	{
+		Node node = heroBox.GetNode(id.ToString());
+		node.QueueFree();
 	}
 
 
@@ -62,26 +81,35 @@ public partial class SetupUI : CanvasLayer
 			Node node = sceneToInit.Instantiate();
 			TNode element = (TNode)node;
 			element.Name = i.ToString();
-
+			TItem item = items[i];
+			bool isAlive = true;
 			switch(element)
 			{
 				case Button button:
-					button.Text = getText(items[i]);
-					if(onPressed != null)
+					if(item is Human hero)
 					{
-						int id = i;
-						button.Pressed += () => onPressed(id);
+						isAlive = hero.IsAlive;
+					}
+					if(isAlive)
+					{
+						button.Text = getText(item);
+						if(onPressed != null)
+						{
+							int id = i;
+							button.Pressed += () => onPressed(id);
+						}
 					}
 					break;
 				case Panel panel:
 					RichTextLabel jobName = (RichTextLabel)panel.GetChild(0);
-					jobName.Text = getText(items[i]);
+					jobName.Text = getText(item);
 					break;
 				default:
 					GD.PrintErr($"ERROR 1: Type not supported: {element.GetType()}");
 					break;
 			}
-			container.AddChild(element);
+			if(isAlive)
+				container.AddChild(element);
 		}
 	}
 

@@ -56,6 +56,11 @@ public partial class Globals : Node
         return Heroes[id];
     }
 
+    public void ChangeStats(int heroId, int id, int val)
+    {
+        Heroes[heroId].Stats[id] = val;
+    }
+
     public DateTime GetDate()
     {
         return currentDate;
@@ -73,5 +78,11 @@ public partial class Globals : Node
     public void AddHero(Human h, int id)
     {
         (GetTree().Root.GetChild(2).GetChild(0) as SetupUI).AddHeroUIElement(h, Heroes.Count-1);
+    }
+
+    public void KillHero(int id)
+    {
+        Heroes[id].IsAlive = false;
+        (GetTree().Root.GetChild(2).GetChild(0) as SetupUI).DeleteHero(id);
     }
 }

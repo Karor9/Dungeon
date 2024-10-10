@@ -83,7 +83,7 @@ public partial class Console : Control
 						break;
 					case 2:
 						if(commandsPart[1] == "-h")
-							result = $"Usage of command\n hero [name] [classId] (birthday) (stats)";
+							result = $"Usage of command\n hero [name] [classId]";
 						else
 							(h, id) = Utils.AddRandomPerson(new string[]{Utils.ToUpper(commandsPart[1])});
 						break;
@@ -93,12 +93,71 @@ public partial class Console : Control
 						h = new Human(name, id);
 						break;
 					default:
+						result = $"Usage of command\n hero [name] [classId]";
 						break;
 				}
 				if(h != null)
 				{
 					Globals.Instance.AddHero(h, id);
 					result = $"Added Hero[/color][color=lime] {h.Name} [/color][color=red] with class [/color][color=lime] {h.GetClassName()} [/color][color=red]";
+				}
+				break;
+			case "setstat":
+				switch(commandsPart.Count)
+				{
+					case 2:
+						if(commandsPart[1] == "-h")
+							result = $"Usage of command\n setstat [heroId] [statId] [value]";
+						break;
+					case 4:
+						int heroId = int.TryParse(commandsPart[1], out var res) ? res : -1;
+						if(heroId <= -1)
+						{
+							result = $"Usage of command\n setstat [heroId] [statId] [value]";
+							break;
+						}
+						int statId = int.TryParse(commandsPart[2], out res) ? res : -1;
+						if(statId <= -1 || statId >= 6)
+						{
+							result = $"Usage of command\n setstat [heroId] [statId] [value]";
+							break;
+						}
+						int statValue = int.TryParse(commandsPart[3], out res) ? res : -1;
+						if(statValue <= -1)
+						{
+							result = $"Usage of command\n setstat [heroId] [statId] [value]";
+							break;
+						}
+						Globals.Instance.ChangeStats(heroId, statId, statValue);
+						result = $"Changed Stat [/color][color=lime] {statId} [/color][color=red] of [/color][color=lime] {Globals.Instance.GetHero(heroId).Name} [/color][color=red] to [/color][color=lime] {statValue} [/color][color=red]";
+				
+						break;
+					default:
+						result = $"Usage of command\n setstat [heroId] [statId] [value]";
+						break;
+				}
+				break;
+			case "kill":
+				int deletedHero;
+				switch(commandsPart.Count)
+				{
+					case 2:
+						if(commandsPart[1] == "-h")
+							result = $"Usage of command\n kill [heroId]";
+						else
+						{
+							deletedHero = int.TryParse(commandsPart[1], out var res) ? res : -1;
+							if(deletedHero >= -1)
+							{
+								result = $"Killed [/color][color=lime] {Globals.Instance.GetHero(deletedHero).Name} [/color][color=red]";
+								Globals.Instance.KillHero(deletedHero);
+							}
+
+						}
+						break;
+					default:
+						result = $"Usage of command\n kill [heroId]";
+						break;
 				}
 				break;
 			default:
