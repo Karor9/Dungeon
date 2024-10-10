@@ -64,4 +64,9 @@ public partial class Globals : Node
         }
         GetTree().Root.GetChild(2).GetChild(0).Call("ChangeCountGoods");
     }
+
+    public void AddHero(Human h, int id)
+    {
+        (GetTree().Root.GetChild(2).GetChild(0) as SetupUI).AddHeroUIElement(h, id);
+    }
 }

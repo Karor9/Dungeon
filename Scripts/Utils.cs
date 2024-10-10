@@ -29,4 +29,22 @@ public static class Utils
             newHero.ChangeName(namesbase[GD.RandRange(0, namesbase.Length-1)]);
         Globals.Instance.AddHero(newHero);
     }
+
+    public static (Human, int) AddRandomPerson(string[] namesbase = null)
+    {
+        Human newHero = new Human("[WrongNamebase]", 
+                GD.RandRange(0, Globals.Instance.GetClasses().Count - 1));
+        if(namesbase != null)
+            newHero.ChangeName(namesbase[GD.RandRange(0, namesbase.Length-1)]);
+        Globals.Instance.AddHero(newHero);
+        return (newHero, Globals.Instance.GetHeroes().Count);
+    }
+
+    public static string ToUpper(this string input) =>
+        input switch
+        {
+            null => throw new ArgumentNullException(nameof(input)),
+            "" => throw new ArgumentException($"{nameof(input)} cannot be empty", nameof(input)),
+            _ => input[0].ToString().ToUpper() + input.Substring(1)
+        };
 }

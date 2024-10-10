@@ -73,7 +73,33 @@ public partial class Console : Control
 				result = $"Added [/color][color=blue]{count}[/color][color=red] goods!";
 				break;
 			case "hero":
-				
+				int id = 0;
+				Human h = null;
+				string name = "";
+				switch(commandsPart.Count)
+				{
+					case 1:
+						(h, id) = Utils.AddRandomPerson(new string[]{"Andriej", "Janush"});
+						break;
+					case 2:
+						if(commandsPart[1] == "-h")
+							result = $"Usage of command\n hero [name] [classId] (birthday) (stats)";
+						else
+							(h, id) = Utils.AddRandomPerson(new string[]{Utils.ToUpper(commandsPart[1])});
+						break;
+					case 3:
+						name = Utils.ToUpper(commandsPart[1]);
+						id = int.TryParse(commandsPart[2], out var parsed) ? parsed : 0;
+						h = new Human(name, id);
+						break;
+					default:
+						break;
+				}
+				if(h != null)
+				{
+					Globals.Instance.AddHero(h, id);
+					result = $"Added Hero[/color][color=lime] {h.Name} [/color][color=red] with class [/color][color=lime] {h.GetClassName()} [/color][color=red]";
+				}
 				break;
 			default:
 				result = "Unknown command!";

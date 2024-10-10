@@ -28,6 +28,18 @@ public partial class SetupUI : CanvasLayer
 		(good) => good.Name + "\n" + good.Count);
 	}
 
+	public void AddHeroUIElement(Human hero, int id)
+	{
+		Node node = heroButton.Instantiate();
+		Button button = (Button)node;
+		button.Name = id.ToString();
+		button.Text = hero.Name + "\n" + hero.GetClassName();
+
+		//TBD Add OnClick
+		heroBox.AddChild(button);
+	}
+
+
 	void SetupUIElement<TItem, TNode>(List<TItem> items, PackedScene sceneToInit, Container container,
 	Func<TItem, string> getText, Action<int> onPressed = null, Texture2D iconButton = null) where TNode : Control
 	{
@@ -75,4 +87,5 @@ public partial class SetupUI : CanvasLayer
 			ChangeGoodText(i);
 		}
 	}
+
 }
