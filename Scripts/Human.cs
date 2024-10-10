@@ -46,4 +46,15 @@ public class Human
     {
         return Globals.Instance.GetHumanClass(ClassId)?.ClassName ?? "Wrong ClassID";
     }
+
+    internal int GetAge()
+    {
+        DateTime today = Globals.Instance.GetDate();
+		int age = today.Year - Birth.Year;
+		
+		if(today.Month < Birth.Month || (today.Month == Birth.Month && today.Day < Birth.Day)) 
+			age--;
+		return age;
+    }
+
 }

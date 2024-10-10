@@ -9,5 +9,5 @@
 
 [node name="Node" type="Node"]
 script = ExtResource("1_00y6l")
-Classes = [ExtResource("3_xrs3a"), ExtResource("2_aylnt"), ExtResource("4_pc7u4")]
-Goods = [ExtResource("5_kjpqw"), ExtResource("6_16jw2")]
+Classes = [ExtResource("2_aylnt"), ExtResource("3_xrs3a"), ExtResource("4_pc7u4")]
+Goods = [ExtResource("6_16jw2"), ExtResource("5_kjpqw")]

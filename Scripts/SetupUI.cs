@@ -8,6 +8,7 @@ public partial class SetupUI : CanvasLayer
 	[ExportCategory("HeroesPanel")]
 	[Export] PackedScene heroButton;
 	[Export] VBoxContainer heroBox;
+	[Export] Control heroPanel;
 
 	[ExportCategory("GoodsPanel")]
 	[Export] PackedScene goodsButton;
@@ -22,20 +23,33 @@ public partial class SetupUI : CanvasLayer
         }
 
 		SetupUIElement<Human, Button>(Globals.Instance.GetHeroes(), heroButton, heroBox,
-		(hero) => hero.Name + "\n" + hero.GetClassName()); //TBD Show Hero Script
+		(hero) => hero.Name + "\n" + hero.GetClassName(),
+		(id) => ChooseHero(id));
 
 		SetupUIElement<Goods, Button>(Globals.Instance.GetGoods().ToList(), goodsButton, goodsBox,
 		(good) => good.Name + "\n" + good.Count);
 	}
 
-	public void AddHeroUIElement(Human hero, int id)
+    private void ChooseHero(int id)
+    {
+        Human hero = Globals.Instance.GetHero(id);
+		heroPanel.Visible = true;
+		RichTextLabel name = (RichTextLabel)heroPanel.GetChild(0).GetChild(0);
+		name.Text = hero.Name;
+		RichTextLabel className = (RichTextLabel)heroPanel.GetChild(1).GetChild(0);
+		className.Text = hero.GetClassName();
+		RichTextLabel age = (RichTextLabel)heroPanel.GetChild(2).GetChild(0);
+		age.Text = hero.GetAge().ToString();
+    }
+
+    public void AddHeroUIElement(Human hero, int id)
 	{
 		Node node = heroButton.Instantiate();
 		Button button = (Button)node;
 		button.Name = id.ToString();
 		button.Text = hero.Name + "\n" + hero.GetClassName();
 
-		//TBD Add OnClick
+		button.Pressed += () => ChooseHero(id);
 		heroBox.AddChild(button);
 	}
 

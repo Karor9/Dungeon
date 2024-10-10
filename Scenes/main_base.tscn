@@ -8,10 +8,11 @@
 layout_mode = 3
 anchors_preset = 0
 
-[node name="UI" type="CanvasLayer" parent="." node_paths=PackedStringArray("heroBox", "goodsBox")]
+[node name="UI" type="CanvasLayer" parent="." node_paths=PackedStringArray("heroBox", "heroPanel", "goodsBox")]
 script = ExtResource("1_ogpng")
 heroButton = ExtResource("3_xcmh6")
 heroBox = NodePath("HeroesPanel/ScrollContainer/HeroesBox")
+heroPanel = NodePath("MainPlayerPanel")
 goodsButton = ExtResource("3_ef6b4")
 goodsBox = NodePath("ResourcesPanel/ScrollContainer/ProductsBox")
 
