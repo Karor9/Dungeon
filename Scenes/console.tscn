@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/Console.cs" id="1_v5lgy"]
 
 [node name="Console" type="Control" node_paths=PackedStringArray("console", "confirm", "history", "inputText")]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

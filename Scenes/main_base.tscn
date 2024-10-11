@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://d0onbwicvsnn6"]
+[gd_scene load_steps=7 format=3 uid="uid://d0onbwicvsnn6"]
 
 [ext_resource type="Script" path="res://Scripts/SetupUI.cs" id="1_ogpng"]
 [ext_resource type="PackedScene" uid="uid://b47mkukc3pfue" path="res://Scenes/product.tscn" id="3_ef6b4"]
 [ext_resource type="PackedScene" uid="uid://bm60fmnjxg6p2" path="res://Scenes/hero_button.tscn" id="3_xcmh6"]
 [ext_resource type="PackedScene" uid="uid://bhsefxha4ah23" path="res://Scenes/buildingsButton.tscn" id="4_joorj"]
+[ext_resource type="Script" path="res://Scripts/BuildingPanel.cs" id="5_xcso5"]
+[ext_resource type="Script" path="res://Scripts/CloseWindow.cs" id="6_0ra4g"]
 
 [node name="MainBase" type="Control"]
 layout_mode = 3
@@ -375,7 +377,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 columns = 3
 
-[node name="BuildingsPanel" type="Panel" parent="UI"]
+[node name="BuildingsPanel" type="Panel" parent="UI" node_paths=PackedStringArray("buildingPanel", "buildingButton", "ownedPanel", "ownedButton")]
 anchors_preset = -1
 anchor_left = 0.15
 anchor_top = 0.1
@@ -383,6 +385,11 @@ anchor_right = 0.85
 anchor_bottom = 0.9
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("5_xcso5")
+buildingPanel = NodePath("BuildMode")
+buildingButton = NodePath("BuildModeButton")
+ownedPanel = NodePath("BuildingsActive")
+ownedButton = NodePath("StatsPanel")
 
 [node name="TitlePanel" type="Panel" parent="UI/BuildingsPanel"]
 layout_mode = 1
@@ -507,7 +514,7 @@ focus_mode = 0
 disabled = true
 text = "[Accept]"
 
-[node name="CancelButton" type="Button" parent="UI/BuildingMonit"]
+[node name="CancelButton" type="Button" parent="UI/BuildingMonit" node_paths=PackedStringArray("window")]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -520,6 +527,8 @@ offset_right = -5.0
 offset_bottom = -5.0
 focus_mode = 0
 text = "[Cancel]"
+script = ExtResource("6_0ra4g")
+window = NodePath("..")
 
 [node name="Title" type="RichTextLabel" parent="UI/BuildingMonit"]
 layout_mode = 1
@@ -559,4 +568,7 @@ text = "[right]
 
 [connection signal="pressed" from="UI/UpperPanel/PlayerButton" to="." method="OnPlayerButtonPressed"]
 [connection signal="pressed" from="UI/MainPlayerPanel/CloseButton" to="." method="OnPlayerButtonPressed"]
+[connection signal="pressed" from="UI/BuildingsPanel/BuildModeButton" to="UI/BuildingsPanel" method="OpenBuildingPanel" binds= [true]]
+[connection signal="pressed" from="UI/BuildingsPanel/StatsPanel" to="UI/BuildingsPanel" method="OpenBuildingPanel" binds= [false]]
 [connection signal="pressed" from="UI/BuildingMonit/AcceptButton" to="UI" method="BuildBuilding"]
+[connection signal="pressed" from="UI/BuildingMonit/CancelButton" to="UI/BuildingMonit/CancelButton" method="Close"]

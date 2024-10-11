@@ -35,7 +35,9 @@ project/assembly_name="Dungeon"
 folder_colors={
 "res://Resources/Buildings/": "orange",
 "res://Resources/Class/": "green",
-"res://Resources/Goods/": "yellow"
+"res://Resources/Goods/": "yellow",
+"res://Scenes/": "purple",
+"res://Scripts/": "pink"
 }
 
 [gui]
