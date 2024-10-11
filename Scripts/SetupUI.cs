@@ -18,7 +18,10 @@ public partial class SetupUI : CanvasLayer
 	[ExportCategory("Buildings")]
 	[Export] PackedScene buildingButton;
 	[Export] Container buildingBox;
+	[Export] Control buildingMonit;
 
+
+	int ChoosenBuildingToBuild = -1;
 	public override void _Ready()
 	{
         for (int i = 0; i < 5; i++)
@@ -34,7 +37,8 @@ public partial class SetupUI : CanvasLayer
 		(good) => good.Name + "\n" + good.Count);
 
 		SetupUIElement<Building, Button>(Globals.Instance.GetBuildings().ToList(), buildingButton, buildingBox,
-		(building) => building.Name);
+		(building) => building.Name,
+		(id) => ChooseBuilding(id));
 	}
 
     private void ChooseHero(int id)
@@ -136,4 +140,48 @@ public partial class SetupUI : CanvasLayer
 		}
 	}
 
+	void ChooseBuilding(int id)
+	{
+		bool dontHaveProducts = false;
+		ShowHideMonit(true);
+		RichTextLabel text = (RichTextLabel)buildingMonit.GetChild(3);
+		Building building = Globals.Instance.GetBuilding(id);
+		string formattedText = "[BuildRequest]" + building.Name + "?\n";
+		List<int> keys = building.CostToBuild.Keys.ToList();
+		
+		for (int i = 0; i < keys.Count; i++)
+		{
+			formattedText += Globals.Instance.GetGood(keys[i]).Name + ":\n";
+		}
+
+		text.Text = formattedText;
+
+		RichTextLabel demand = (RichTextLabel)buildingMonit.GetChild(4);
+		string demandText = "[right]\n";
+		double h = 0;
+		double d = 0;
+		for (int i = 0; i < keys.Count; i++)
+		{
+			h = Globals.Instance.GetGood(keys[i]).Count;
+			d = building.CostToBuild[keys[i]];
+			if (h > d)
+				demandText += "[color=green]";
+			else{
+				demandText += "[color=red]";
+				dontHaveProducts = true;
+			}
+			demandText += h + "/" + d + "[/color]\n";
+		}
+		demandText += "[/right]";
+		demand.Text = demandText;
+		
+		Button b = (Button)buildingMonit.GetChild(0);
+		ChoosenBuildingToBuild = id;
+		b.Disabled = dontHaveProducts;
+	}
+
+	void ShowHideMonit(bool show)
+	{
+		buildingMonit.Visible = show;
+	}
 }

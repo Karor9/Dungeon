@@ -9,7 +9,7 @@
 layout_mode = 3
 anchors_preset = 0
 
-[node name="UI" type="CanvasLayer" parent="." node_paths=PackedStringArray("heroBox", "heroPanel", "statsPanel", "goodsBox", "buildingBox")]
+[node name="UI" type="CanvasLayer" parent="." node_paths=PackedStringArray("heroBox", "heroPanel", "statsPanel", "goodsBox", "buildingBox", "buildingMonit")]
 script = ExtResource("1_ogpng")
 heroButton = ExtResource("3_xcmh6")
 heroBox = NodePath("HeroesPanel/ScrollContainer/HeroesBox")
@@ -19,6 +19,7 @@ goodsButton = ExtResource("3_ef6b4")
 goodsBox = NodePath("ResourcesPanel/ScrollContainer/ProductsBox")
 buildingButton = ExtResource("4_joorj")
 buildingBox = NodePath("BuildingsPanel/BuildMode")
+buildingMonit = NodePath("BuildingMonit")
 
 [node name="UpperPanel" type="Panel" parent="UI"]
 anchors_preset = 10
@@ -558,4 +559,3 @@ text = "[right]
 
 [connection signal="pressed" from="UI/UpperPanel/PlayerButton" to="." method="OnPlayerButtonPressed"]
 [connection signal="pressed" from="UI/MainPlayerPanel/CloseButton" to="." method="OnPlayerButtonPressed"]
-[connection signal="pressed" from="UI/BuildingMonit/AcceptButton" to="." method="BuildBulding"]
