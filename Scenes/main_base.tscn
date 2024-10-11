@@ -11,7 +11,7 @@
 layout_mode = 3
 anchors_preset = 0
 
-[node name="UI" type="CanvasLayer" parent="." node_paths=PackedStringArray("heroBox", "heroPanel", "statsPanel", "goodsBox", "buildingBox", "buildingMonit")]
+[node name="UI" type="CanvasLayer" parent="." node_paths=PackedStringArray("heroBox", "heroPanel", "statsPanel", "goodsBox", "buildingBox", "buildingMonit", "buildingPanel")]
 script = ExtResource("1_ogpng")
 heroButton = ExtResource("3_xcmh6")
 heroBox = NodePath("HeroesPanel/ScrollContainer/HeroesBox")
@@ -22,6 +22,7 @@ goodsBox = NodePath("ResourcesPanel/ScrollContainer/ProductsBox")
 buildingButton = ExtResource("4_joorj")
 buildingBox = NodePath("BuildingsPanel/BuildMode")
 buildingMonit = NodePath("BuildingMonit")
+buildingPanel = NodePath("BuildingsPanel")
 
 [node name="UpperPanel" type="Panel" parent="UI"]
 anchors_preset = 10
@@ -156,7 +157,7 @@ anchor_bottom = 1.0
 offset_bottom = 40.0
 text = "[Health]"
 
-[node name="CloseButton" type="Button" parent="UI/MainPlayerPanel"]
+[node name="CloseButton" type="Button" parent="UI/MainPlayerPanel" node_paths=PackedStringArray("window")]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0
@@ -164,6 +165,8 @@ anchor_right = 1.0
 offset_left = -35.0
 offset_bottom = 35.0
 text = "X"
+script = ExtResource("6_0ra4g")
+window = NodePath("..")
 
 [node name="AllStatsPanel" type="Panel" parent="UI/MainPlayerPanel"]
 layout_mode = 1
@@ -408,6 +411,18 @@ theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 text = "[center][BuildingsTitle][/center]"
 
+[node name="CloseBuilding" type="Button" parent="UI/BuildingsPanel/TitlePanel" node_paths=PackedStringArray("window")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -45.0
+theme_override_font_sizes/font_size = 26
+text = "X"
+script = ExtResource("6_0ra4g")
+window = NodePath("../..")
+
 [node name="BuildMode" type="GridContainer" parent="UI/BuildingsPanel"]
 layout_mode = 1
 anchors_preset = -1
@@ -567,7 +582,8 @@ text = "[right]
 [100]/[1000]"
 
 [connection signal="pressed" from="UI/UpperPanel/PlayerButton" to="." method="OnPlayerButtonPressed"]
-[connection signal="pressed" from="UI/MainPlayerPanel/CloseButton" to="." method="OnPlayerButtonPressed"]
+[connection signal="pressed" from="UI/MainPlayerPanel/CloseButton" to="UI/MainPlayerPanel/CloseButton" method="Close"]
+[connection signal="pressed" from="UI/BuildingsPanel/TitlePanel/CloseBuilding" to="UI/BuildingsPanel/TitlePanel/CloseBuilding" method="Close"]
 [connection signal="pressed" from="UI/BuildingsPanel/BuildModeButton" to="UI/BuildingsPanel" method="OpenBuildingPanel" binds= [true]]
 [connection signal="pressed" from="UI/BuildingsPanel/StatsPanel" to="UI/BuildingsPanel" method="OpenBuildingPanel" binds= [false]]
 [connection signal="pressed" from="UI/BuildingMonit/AcceptButton" to="UI" method="BuildBuilding"]

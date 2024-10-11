@@ -19,7 +19,7 @@ public partial class SetupUI : CanvasLayer
 	[Export] PackedScene buildingButton;
 	[Export] Container buildingBox;
 	[Export] Control buildingMonit;
-
+	[Export] CanvasItem buildingPanel;
 
 	int ChoosenBuildingToBuild = -1;
 	public override void _Ready()
@@ -52,6 +52,8 @@ public partial class SetupUI : CanvasLayer
 		RichTextLabel age = (RichTextLabel)heroPanel.GetChild(2).GetChild(0);
 		age.Text = hero.GetAge().ToString();
 		SetupStats(hero.Stats);
+
+		buildingPanel.Visible = false;
     }
 
 	void SetupStats(int[] stats)
