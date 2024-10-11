@@ -184,4 +184,19 @@ public partial class SetupUI : CanvasLayer
 	{
 		buildingMonit.Visible = show;
 	}
+
+	public void BuildBuilding()
+	{
+		if(ChoosenBuildingToBuild <= -1)
+			return;
+		Building building = Globals.Instance.GetBuilding(ChoosenBuildingToBuild);
+		foreach (int item in building.CostToBuild.Keys)
+		{
+			Globals.Instance.AddGoods(-1 * building.CostToBuild[item]);
+		}
+
+		Globals.Instance.AddBuilding(ChoosenBuildingToBuild, 1);
+		ChoosenBuildingToBuild = -1;
+		ShowHideMonit(false);
+	}
 }

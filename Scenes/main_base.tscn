@@ -559,3 +559,4 @@ text = "[right]
 
 [connection signal="pressed" from="UI/UpperPanel/PlayerButton" to="." method="OnPlayerButtonPressed"]
 [connection signal="pressed" from="UI/MainPlayerPanel/CloseButton" to="." method="OnPlayerButtonPressed"]
+[connection signal="pressed" from="UI/BuildingMonit/AcceptButton" to="UI" method="BuildBuilding"]

@@ -10,6 +10,7 @@ public partial class Globals : Node
     [Export] Godot.Collections.Array<HumanClass> Classes = new Godot.Collections.Array<HumanClass>();
     [Export] Godot.Collections.Array<Goods> Goods = new Godot.Collections.Array<Goods>();
     [Export] Godot.Collections.Array<Building> Buildings = new Godot.Collections.Array<Building>();
+    [Export] Godot.Collections.Dictionary<int, int> BuildedBuildings = new Godot.Collections.Dictionary<int, int>();
     
     public override void _Ready()
     {
@@ -95,5 +96,13 @@ public partial class Globals : Node
     public Building GetBuilding(int x)
     {
         return Buildings[x];
+    }
+
+    public void AddBuilding(int key, int value)
+    {
+        if(BuildedBuildings.ContainsKey(key))
+            BuildedBuildings[key] += value;
+        else
+            BuildedBuildings[key] = value;
     }
 }
