@@ -9,6 +9,7 @@ public partial class Globals : Node
     List<Human> Heroes = new List<Human>();
     [Export] Godot.Collections.Array<HumanClass> Classes = new Godot.Collections.Array<HumanClass>();
     [Export] Godot.Collections.Array<Goods> Goods = new Godot.Collections.Array<Goods>();
+    [Export] Godot.Collections.Array<Building> Buildings = new Godot.Collections.Array<Building>();
     
     public override void _Ready()
     {
@@ -84,5 +85,15 @@ public partial class Globals : Node
     {
         Heroes[id].IsAlive = false;
         (GetTree().Root.GetChild(2).GetChild(0) as SetupUI).DeleteHero(id);
+    }
+
+    public Godot.Collections.Array<Building> GetBuildings()
+    {
+        return Buildings;
+    }
+
+    public Building GetBuilding(int x)
+    {
+        return Buildings[x];
     }
 }

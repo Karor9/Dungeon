@@ -15,6 +15,9 @@ public partial class SetupUI : CanvasLayer
 	[Export] PackedScene goodsButton;
 	[Export] VBoxContainer goodsBox;
 
+	[ExportCategory("Buildings")]
+	[Export] PackedScene buildingButton;
+	[Export] Container buildingBox;
 
 	public override void _Ready()
 	{
@@ -29,6 +32,9 @@ public partial class SetupUI : CanvasLayer
 
 		SetupUIElement<Goods, Button>(Globals.Instance.GetGoods().ToList(), goodsButton, goodsBox,
 		(good) => good.Name + "\n" + good.Count);
+
+		SetupUIElement<Building, Button>(Globals.Instance.GetBuildings().ToList(), buildingButton, buildingBox,
+		(building) => building.Name);
 	}
 
     private void ChooseHero(int id)

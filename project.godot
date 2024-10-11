@@ -30,6 +30,14 @@ window/size/mode=3
 
 project/assembly_name="Dungeon"
 
+[file_customization]
+
+folder_colors={
+"res://Resources/Buildings/": "orange",
+"res://Resources/Class/": "green",
+"res://Resources/Goods/": "yellow"
+}
+
 [gui]
 
 theme/custom="res://Themes/UITHeme.tres"

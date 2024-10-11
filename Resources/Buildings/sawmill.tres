@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Building" load_steps=2 format=3 uid="uid://btgy4awclh1od"]
+
+[ext_resource type="Script" path="res://Scripts/Building.cs" id="1_7ml6x"]
+
+[resource]
+script = ExtResource("1_7ml6x")
+Name = "[Sawmill]"
+CostToBuild = {
+0: 100
+}
