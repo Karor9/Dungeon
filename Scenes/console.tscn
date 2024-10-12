@@ -53,3 +53,5 @@ offset_left = -20.0
 offset_top = -35.0
 focus_mode = 0
 text = ">"
+
+[connection signal="text_changed" from="CanvasLayer/Active" to="." method="ValidateText"]

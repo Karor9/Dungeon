@@ -81,7 +81,6 @@ public partial class Globals : Node
     {
         Goods[id].Count += val;
         (GetTree().Root.GetChild(2).GetChild(0) as SetupUI).ChangeCountGoods();
-
     }
 
     public void AddHero(Human h, int id)

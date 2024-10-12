@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
+using System.Text.RegularExpressions;
 
 public partial class Console : Control
 {
@@ -17,18 +18,21 @@ public partial class Console : Control
 			switch (@event)
 			{
 				case var _ when @event.IsActionPressed("command"):
+					if(inputText.HasFocus())
+						inputText.ReleaseFocus();
 					if (console.Visible)
 					{
 						Engine.TimeScale = 1f;
 						console.Visible = false;
+						inputText.Text = "";
 					}
 					else
 					{
 						Engine.TimeScale = 0f;
 						console.Visible = true;
+						inputText.GrabFocus();
 					}
 					break;
-
 				case var _ when @event.IsAction("confirmCommand"):
 					PressedConfirm();
 					break;
@@ -165,5 +169,18 @@ public partial class Console : Control
 				break;
 		}
 		return result;
+	}
+
+	public void ValidateText(string newText)
+	{
+		string clennedText = RegexConsole(newText);
+		if(newText != clennedText)
+			inputText.Text = clennedText;
+	}
+
+	string RegexConsole(string input)
+	{
+		Regex regex = new Regex(@"[`~]");
+		return regex.Replace(input, "");
 	}
 }
