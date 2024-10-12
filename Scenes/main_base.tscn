@@ -11,7 +11,7 @@
 layout_mode = 3
 anchors_preset = 0
 
-[node name="UI" type="CanvasLayer" parent="." node_paths=PackedStringArray("heroBox", "heroPanel", "statsPanel", "goodsBox", "buildingBox", "buildingMonit", "buildingPanel")]
+[node name="UI" type="CanvasLayer" parent="." node_paths=PackedStringArray("heroBox", "heroPanel", "statsPanel", "goodsBox", "buildingBox", "buildingMonit", "buildingPanel", "buildedBox")]
 script = ExtResource("1_ogpng")
 heroButton = ExtResource("3_xcmh6")
 heroBox = NodePath("HeroesPanel/ScrollContainer/HeroesBox")
@@ -23,6 +23,8 @@ buildingButton = ExtResource("4_joorj")
 buildingBox = NodePath("BuildingsPanel/BuildMode")
 buildingMonit = NodePath("BuildingMonit")
 buildingPanel = NodePath("BuildingsPanel")
+buildedButton = ExtResource("4_joorj")
+buildedBox = NodePath("BuildingsPanel/BuildingsActive")
 
 [node name="UpperPanel" type="Panel" parent="UI"]
 anchors_preset = 10

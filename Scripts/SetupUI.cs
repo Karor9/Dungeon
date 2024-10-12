@@ -21,6 +21,9 @@ public partial class SetupUI : CanvasLayer
 	[Export] Control buildingMonit;
 	[Export] CanvasItem buildingPanel;
 
+	[ExportCategory("BuildedBuildings")]
+	[Export] PackedScene buildedButton;
+	[Export] Container buildedBox;
 	int ChoosenBuildingToBuild = -1;
 	public override void _Ready()
 	{
@@ -39,6 +42,10 @@ public partial class SetupUI : CanvasLayer
 		SetupUIElement<Building, Button>(Globals.Instance.GetBuildings().ToList(), buildingButton, buildingBox,
 		(building) => building.Name,
 		(id) => ChooseBuilding(id));
+
+		SetupUIElement<int, Button>(Globals.Instance.GetBuildedBuildings().Keys.ToList(), buildedButton, buildedBox,
+		(building) => Globals.Instance.GetBuilding(building).Name + "\n[Builded]: " +
+					Globals.Instance.GetBuildedBuildingCount(building).ToString());
 	}
 
     private void ChooseHero(int id)
@@ -194,11 +201,33 @@ public partial class SetupUI : CanvasLayer
 		Building building = Globals.Instance.GetBuilding(ChoosenBuildingToBuild);
 		foreach (int item in building.CostToBuild.Keys)
 		{
-			Globals.Instance.AddGoods(-1 * building.CostToBuild[item]);
+			Globals.Instance.AddGood(item, -1 * building.CostToBuild[item]);
 		}
 
-		Globals.Instance.AddBuilding(ChoosenBuildingToBuild, 1);
+		int count = Globals.Instance.AddBuilding(ChoosenBuildingToBuild, 1);
+		AddBuildedBuilding(count, ChoosenBuildingToBuild);
 		ChoosenBuildingToBuild = -1;
 		ShowHideMonit(false);
+	}
+
+	void AddBuildedBuilding(int count, int id)
+	{
+		if(count > 1)
+		{
+			Button label = (Button)buildedBox.GetNode(id.ToString());
+			string val = label.Text;
+			val = val.Split(" ")[0];
+			val += " " + Globals.Instance.GetBuildedBuildingCount(id).ToString();
+			label.Text = val;
+		} else
+		{
+			Node n = buildedButton.Instantiate();
+			Button button = (Button)n;
+			button.Name = id.ToString();
+			string val = Globals.Instance.GetBuilding(id).Name + "\n[Builded]: " +
+						Globals.Instance.GetBuildedBuildingCount(id).ToString();
+			button.Text = val;
+			buildedBox.AddChild(n);
+		}
 	}
 }

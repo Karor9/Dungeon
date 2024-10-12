@@ -77,6 +77,13 @@ public partial class Globals : Node
         GetTree().Root.GetChild(2).GetChild(0).Call("ChangeCountGoods");
     }
 
+    public void AddGood(int id, int val)
+    {
+        Goods[id].Count += val;
+        (GetTree().Root.GetChild(2).GetChild(0) as SetupUI).ChangeCountGoods();
+
+    }
+
     public void AddHero(Human h, int id)
     {
         (GetTree().Root.GetChild(2).GetChild(0) as SetupUI).AddHeroUIElement(h, Heroes.Count-1);
@@ -98,11 +105,22 @@ public partial class Globals : Node
         return Buildings[x];
     }
 
-    public void AddBuilding(int key, int value)
+    public int AddBuilding(int key, int value)
     {
         if(BuildedBuildings.ContainsKey(key))
             BuildedBuildings[key] += value;
         else
             BuildedBuildings[key] = value;
+        return BuildedBuildings[key];
+    }
+
+    public Godot.Collections.Dictionary<int, int> GetBuildedBuildings()
+    {
+        return BuildedBuildings;
+    }
+
+    public int GetBuildedBuildingCount(int id)
+    {
+        return BuildedBuildings[id];
     }
 }
