@@ -5,8 +5,13 @@ public partial class CloseWindow : Button
 {
 	[Export] CanvasItem window;
 	
-	public void Close()
+	void Close()
 	{
 		window.Visible = false;
+	}
+
+	void Open()
+	{
+		window.Visible = true;
 	}
 }

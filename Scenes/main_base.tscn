@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://d0onbwicvsnn6"]
+[gd_scene load_steps=8 format=3 uid="uid://d0onbwicvsnn6"]
 
 [ext_resource type="Script" path="res://Scripts/SetupUI.cs" id="1_ogpng"]
 [ext_resource type="PackedScene" uid="uid://b47mkukc3pfue" path="res://Scenes/product.tscn" id="3_ef6b4"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bhsefxha4ah23" path="res://Scenes/buildingsButton.tscn" id="4_joorj"]
 [ext_resource type="Script" path="res://Scripts/BuildingPanel.cs" id="5_xcso5"]
 [ext_resource type="Script" path="res://Scripts/CloseWindow.cs" id="6_0ra4g"]
+[ext_resource type="Script" path="res://Scripts/SetText.cs" id="7_d4fk0"]
 
 [node name="MainBase" type="Control"]
 layout_mode = 3
@@ -30,6 +31,16 @@ buildedBox = NodePath("BuildingsPanel/BuildingsActive")
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 50.0
+
+[node name="Buildings" type="Button" parent="UI/UpperPanel" node_paths=PackedStringArray("window")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.95
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "[Buildings]"
+script = ExtResource("6_0ra4g")
+window = NodePath("../../BuildingsPanel")
 
 [node name="PlayerButton" type="Button" parent="UI/UpperPanel"]
 visible = false
@@ -411,7 +422,12 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
-text = "[center][BuildingsTitle][/center]"
+text = " [BuildingsTitle]"
+scroll_active = false
+script = ExtResource("7_d4fk0")
+translateInput = PackedStringArray("[BuildingsTitle]")
+bbCodeStart = "[center]"
+bbCodeEnd = "[/center]"
 
 [node name="CloseBuilding" type="Button" parent="UI/BuildingsPanel/TitlePanel" node_paths=PackedStringArray("window")]
 layout_mode = 1
@@ -583,6 +599,7 @@ bbcode_enabled = true
 text = "[right]
 [100]/[1000]"
 
+[connection signal="pressed" from="UI/UpperPanel/Buildings" to="UI/UpperPanel/Buildings" method="Open"]
 [connection signal="pressed" from="UI/UpperPanel/PlayerButton" to="." method="OnPlayerButtonPressed"]
 [connection signal="pressed" from="UI/MainPlayerPanel/CloseButton" to="UI/MainPlayerPanel/CloseButton" method="Close"]
 [connection signal="pressed" from="UI/BuildingsPanel/TitlePanel/CloseBuilding" to="UI/BuildingsPanel/TitlePanel/CloseBuilding" method="Close"]
