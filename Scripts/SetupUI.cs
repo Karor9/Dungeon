@@ -24,6 +24,11 @@ public partial class SetupUI : CanvasLayer
 	[ExportCategory("BuildedBuildings")]
 	[Export] PackedScene buildedButton;
 	[Export] Container buildedBox;
+
+	[ExportCategory("JobSkills")]
+	[Export] PackedScene jobSkillButton;
+	[Export] Container jobSkillBox;
+
 	int ChoosenBuildingToBuild = -1;
 	public override void _Ready()
 	{
@@ -46,6 +51,9 @@ public partial class SetupUI : CanvasLayer
 		SetupUIElement<int, Button>(Globals.Instance.GetBuildedBuildings().Keys.ToList(), buildedButton, buildedBox,
 		(building) => Globals.Instance.GetBuilding(building).Name + "\n[Builded]: " +
 					Globals.Instance.GetBuildedBuildingCount(building).ToString());
+
+		SetupUIElement<JobSkill, Panel>(Globals.Instance.GetJobSkills().ToList(), jobSkillButton, jobSkillBox,
+		(skill) => skill.Name);
 	}
 
     private void ChooseHero(int id)
@@ -59,7 +67,7 @@ public partial class SetupUI : CanvasLayer
 		RichTextLabel age = (RichTextLabel)heroPanel.GetChild(2).GetChild(0);
 		age.Text = hero.GetAge().ToString();
 		SetupStats(hero.Stats);
-
+		SetupJobSkills(hero);
 		buildingPanel.Visible = false;
     }
 
@@ -228,6 +236,21 @@ public partial class SetupUI : CanvasLayer
 						Globals.Instance.GetBuildedBuildingCount(id).ToString();
 			button.Text = val;
 			buildedBox.AddChild(n);
+		}
+	}
+
+	void SetupJobSkills(Human h)
+	{
+		double[] jobSkills = h.JobStats;
+		for (int i = 0; i < jobSkills.Length; i++)
+		{
+			RichTextLabel jobStatName = (RichTextLabel)jobSkillBox.GetChild(i).GetChild(1);
+			double val = jobSkills[i];
+			int skillVal = (int)val;
+			jobStatName.Text = skillVal.ToString();
+
+			ProgressBar progress = (ProgressBar)jobSkillBox.GetChild(i).GetChild(2);
+			progress.Value = val - skillVal;
 		}
 	}
 }

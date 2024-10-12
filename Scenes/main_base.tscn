@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://d0onbwicvsnn6"]
+[gd_scene load_steps=9 format=3 uid="uid://d0onbwicvsnn6"]
 
 [ext_resource type="Script" path="res://Scripts/SetupUI.cs" id="1_ogpng"]
 [ext_resource type="PackedScene" uid="uid://b47mkukc3pfue" path="res://Scenes/product.tscn" id="3_ef6b4"]
 [ext_resource type="PackedScene" uid="uid://bm60fmnjxg6p2" path="res://Scenes/hero_button.tscn" id="3_xcmh6"]
 [ext_resource type="PackedScene" uid="uid://bhsefxha4ah23" path="res://Scenes/buildingsButton.tscn" id="4_joorj"]
+[ext_resource type="PackedScene" uid="uid://gi4rboqw8u1f" path="res://Scenes/job_panel_skill.tscn" id="5_amuss"]
 [ext_resource type="Script" path="res://Scripts/BuildingPanel.cs" id="5_xcso5"]
 [ext_resource type="Script" path="res://Scripts/CloseWindow.cs" id="6_0ra4g"]
 [ext_resource type="Script" path="res://Scripts/SetText.cs" id="7_d4fk0"]
@@ -12,7 +13,7 @@
 layout_mode = 3
 anchors_preset = 0
 
-[node name="UI" type="CanvasLayer" parent="." node_paths=PackedStringArray("heroBox", "heroPanel", "statsPanel", "goodsBox", "buildingBox", "buildingMonit", "buildingPanel", "buildedBox")]
+[node name="UI" type="CanvasLayer" parent="." node_paths=PackedStringArray("heroBox", "heroPanel", "statsPanel", "goodsBox", "buildingBox", "buildingMonit", "buildingPanel", "buildedBox", "jobSkillBox")]
 script = ExtResource("1_ogpng")
 heroButton = ExtResource("3_xcmh6")
 heroBox = NodePath("HeroesPanel/ScrollContainer/HeroesBox")
@@ -26,6 +27,8 @@ buildingMonit = NodePath("BuildingMonit")
 buildingPanel = NodePath("BuildingsPanel")
 buildedButton = ExtResource("4_joorj")
 buildedBox = NodePath("BuildingsPanel/BuildingsActive")
+jobSkillButton = ExtResource("5_amuss")
+jobSkillBox = NodePath("MainPlayerPanel/GridContainer/GridContainer")
 
 [node name="UpperPanel" type="Panel" parent="UI"]
 anchors_preset = 10

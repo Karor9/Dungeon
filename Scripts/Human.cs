@@ -8,6 +8,7 @@ public class Human
     public DateTime Birth {get; private set;}
     public int ClassId {get; private set;}
     public int[] Stats {get; private set;}
+    public double[] JobStats {get; private set;}
     public bool IsAlive = true;
 
     public Human(string name, int classId)
@@ -16,6 +17,7 @@ public class Human
         ClassId = classId;
         SetStats();
         SetBirthday();
+        SetJobStats();
     }
 
     private void SetStats()
@@ -36,6 +38,16 @@ public class Human
         int day = GD.RandRange(1, maxDays);
 
         Birth = new DateTime(year, month, day);
+    }
+
+    void SetJobStats()
+    {
+        JobStats = Enumerable.Repeat(0d, Globals.Instance.GetJobSkills().Count).ToArray();
+        for (int i = 0; i < JobStats.Length; i++)
+        {
+            double j = Utils.NormalRandomDouble(0, GetAge()/3);
+            JobStats[i] = Math.Round(j, 2);
+        }
     }
 
     public void ChangeName(string newName)

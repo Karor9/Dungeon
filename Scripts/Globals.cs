@@ -11,7 +11,7 @@ public partial class Globals : Node
     [Export] Godot.Collections.Array<Goods> Goods = new Godot.Collections.Array<Goods>();
     [Export] Godot.Collections.Array<Building> Buildings = new Godot.Collections.Array<Building>();
     [Export] Godot.Collections.Dictionary<int, int> BuildedBuildings = new Godot.Collections.Dictionary<int, int>();
-    
+    [Export] Godot.Collections.Array<JobSkill> JobSkills = new Godot.Collections.Array<JobSkill>();
     public override void _Ready()
     {
         Instance = this;
@@ -26,6 +26,16 @@ public partial class Globals : Node
     public Godot.Collections.Array<HumanClass> GetClasses()
     {
         return Classes;
+    }
+
+    public Godot.Collections.Array<JobSkill> GetJobSkills()
+    {
+        return JobSkills;
+    }
+
+    public JobSkill GetJobSkill(int id)
+    {
+        return JobSkills[id];
     }
 
     

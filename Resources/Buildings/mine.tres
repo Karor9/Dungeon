@@ -8,3 +8,4 @@ Name = "[Mine]"
 CostToBuild = {
 0: 100
 }
+EffectiveSkills = Array[int]([1])
