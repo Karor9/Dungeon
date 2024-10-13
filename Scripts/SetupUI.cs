@@ -29,6 +29,10 @@ public partial class SetupUI : CanvasLayer
 	[Export] PackedScene jobSkillButton;
 	[Export] Container jobSkillBox;
 
+	[ExportCategory("Jobs")]
+	[Export] PackedScene jobButton;
+	[Export] Container jobBox;
+
 	int ChoosenBuildingToBuild = -1;
 	public override void _Ready()
 	{
@@ -54,6 +58,9 @@ public partial class SetupUI : CanvasLayer
 
 		SetupUIElement<JobSkill, Panel>(Globals.Instance.GetJobSkills().ToList(), jobSkillButton, jobSkillBox,
 		(skill) => skill.Name);
+
+		SetupUIElement<JobSkill, Button>(Globals.Instance.GetJobSkills().ToList(), jobButton, jobBox,
+		(job) => job.Name);
 	}
 
     private void ChooseHero(int id)

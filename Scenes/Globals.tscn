@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://ckjn286cuk2e0"]
+[gd_scene load_steps=13 format=3 uid="uid://ckjn286cuk2e0"]
 
 [ext_resource type="Script" path="res://Scripts/Globals.cs" id="1_00y6l"]
 [ext_resource type="Resource" uid="uid://devhtv7851d6h" path="res://Resources/Class/mage.tres" id="2_aylnt"]
@@ -10,6 +10,7 @@
 [ext_resource type="Resource" uid="uid://f6jh6c88cupe" path="res://Resources/Buildings/mine.tres" id="8_85f5e"]
 [ext_resource type="Resource" uid="uid://bymvywh0uclrd" path="res://Resources/Jobs/Woodcutting.tres" id="9_q278e"]
 [ext_resource type="Resource" uid="uid://su6ol1dbl26w" path="res://Resources/Jobs/Mining.tres" id="10_6nl1u"]
+[ext_resource type="Resource" uid="uid://c3v2evi1kcatw" path="res://Resources/Jobs/Gathering.tres" id="11_gpraf"]
 [ext_resource type="Resource" uid="uid://wmfrxsgq260h" path="res://Resources/Jobs/Shooting.tres" id="11_iqstl"]
 
 [node name="Node" type="Node"]
@@ -17,4 +18,4 @@ script = ExtResource("1_00y6l")
 Classes = [ExtResource("2_aylnt"), ExtResource("3_xrs3a"), ExtResource("4_pc7u4")]
 Goods = [ExtResource("5_kjpqw"), ExtResource("6_16jw2")]
 Buildings = [ExtResource("7_84gl3"), ExtResource("8_85f5e")]
-JobSkills = [ExtResource("9_q278e"), ExtResource("10_6nl1u"), ExtResource("11_iqstl")]
+JobSkills = [ExtResource("9_q278e"), ExtResource("10_6nl1u"), ExtResource("11_gpraf"), ExtResource("11_iqstl")]

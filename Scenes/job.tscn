@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://bs4f78q7fbwo2"]
+
+[node name="Product" type="Button"]
+custom_minimum_size = Vector2(0, 75)
+size_flags_horizontal = 3
+focus_mode = 0
+text = "[Job]
+"
+expand_icon = true

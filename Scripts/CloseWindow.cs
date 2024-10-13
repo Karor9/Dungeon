@@ -4,6 +4,7 @@ using System;
 public partial class CloseWindow : Button
 {
 	[Export] CanvasItem window;
+	[Export] CanvasItem[] toClose;
 	
 	void Close()
 	{
@@ -13,5 +14,9 @@ public partial class CloseWindow : Button
 	void Open()
 	{
 		window.Visible = true;
+		foreach (CanvasItem item in toClose)
+		{
+			item.Visible = false;
+		}
 	}
 }

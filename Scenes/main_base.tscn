@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://d0onbwicvsnn6"]
+[gd_scene load_steps=10 format=3 uid="uid://d0onbwicvsnn6"]
 
 [ext_resource type="Script" path="res://Scripts/SetupUI.cs" id="1_ogpng"]
 [ext_resource type="PackedScene" uid="uid://b47mkukc3pfue" path="res://Scenes/product.tscn" id="3_ef6b4"]
@@ -7,13 +7,14 @@
 [ext_resource type="PackedScene" uid="uid://gi4rboqw8u1f" path="res://Scenes/job_panel_skill.tscn" id="5_amuss"]
 [ext_resource type="Script" path="res://Scripts/BuildingPanel.cs" id="5_xcso5"]
 [ext_resource type="Script" path="res://Scripts/CloseWindow.cs" id="6_0ra4g"]
+[ext_resource type="PackedScene" uid="uid://bs4f78q7fbwo2" path="res://Scenes/job.tscn" id="6_cchop"]
 [ext_resource type="Script" path="res://Scripts/SetText.cs" id="7_d4fk0"]
 
 [node name="MainBase" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 
-[node name="UI" type="CanvasLayer" parent="." node_paths=PackedStringArray("heroBox", "heroPanel", "statsPanel", "goodsBox", "buildingBox", "buildingMonit", "buildingPanel", "buildedBox", "jobSkillBox")]
+[node name="UI" type="CanvasLayer" parent="." node_paths=PackedStringArray("heroBox", "heroPanel", "statsPanel", "goodsBox", "buildingBox", "buildingMonit", "buildingPanel", "buildedBox", "jobSkillBox", "jobBox")]
 script = ExtResource("1_ogpng")
 heroButton = ExtResource("3_xcmh6")
 heroBox = NodePath("HeroesPanel/ScrollContainer/HeroesBox")
@@ -29,28 +30,44 @@ buildedButton = ExtResource("4_joorj")
 buildedBox = NodePath("BuildingsPanel/BuildingsActive")
 jobSkillButton = ExtResource("5_amuss")
 jobSkillBox = NodePath("MainPlayerPanel/GridContainer/GridContainer")
+jobButton = ExtResource("6_cchop")
+jobBox = NodePath("JobPanel/BuildMode")
 
 [node name="UpperPanel" type="Panel" parent="UI"]
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 50.0
 
-[node name="Buildings" type="Button" parent="UI/UpperPanel" node_paths=PackedStringArray("window")]
+[node name="Buildings" type="Button" parent="UI/UpperPanel" node_paths=PackedStringArray("window", "toClose")]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.95
 anchor_right = 1.0
 anchor_bottom = 1.0
+focus_mode = 0
 text = "[Buildings]"
 script = ExtResource("6_0ra4g")
 window = NodePath("../../BuildingsPanel")
+toClose = [NodePath("../../BuildingMonit"), NodePath("../../MainPlayerPanel"), NodePath("../../JobPanel")]
+
+[node name="Jobs" type="Button" parent="UI/UpperPanel" node_paths=PackedStringArray("window", "toClose")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.9
+anchor_right = 0.95
+anchor_bottom = 1.0
+focus_mode = 0
+text = "[Jobs]"
+script = ExtResource("6_0ra4g")
+window = NodePath("../../JobPanel")
+toClose = [NodePath("../../BuildingMonit"), NodePath("../../MainPlayerPanel"), NodePath("../../BuildingsPanel")]
 
 [node name="PlayerButton" type="Button" parent="UI/UpperPanel"]
 visible = false
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.9
-anchor_right = 1.0
+anchor_left = 0.8
+anchor_right = 0.9
 anchor_bottom = 1.0
 text = "Show players"
 
@@ -173,7 +190,7 @@ anchor_bottom = 1.0
 offset_bottom = 40.0
 text = "[Health]"
 
-[node name="CloseButton" type="Button" parent="UI/MainPlayerPanel" node_paths=PackedStringArray("window")]
+[node name="CloseButton" type="Button" parent="UI/MainPlayerPanel" node_paths=PackedStringArray("window", "toClose")]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0
@@ -183,6 +200,7 @@ offset_bottom = 35.0
 text = "X"
 script = ExtResource("6_0ra4g")
 window = NodePath("..")
+toClose = []
 
 [node name="AllStatsPanel" type="Panel" parent="UI/MainPlayerPanel"]
 layout_mode = 1
@@ -397,6 +415,7 @@ size_flags_vertical = 3
 columns = 3
 
 [node name="BuildingsPanel" type="Panel" parent="UI" node_paths=PackedStringArray("buildingPanel", "buildingButton", "ownedPanel", "ownedButton")]
+visible = false
 anchors_preset = -1
 anchor_left = 0.15
 anchor_top = 0.1
@@ -432,7 +451,7 @@ translateInput = PackedStringArray("[BuildingsTitle]")
 bbCodeStart = "[center]"
 bbCodeEnd = "[/center]"
 
-[node name="CloseBuilding" type="Button" parent="UI/BuildingsPanel/TitlePanel" node_paths=PackedStringArray("window")]
+[node name="CloseBuilding" type="Button" parent="UI/BuildingsPanel/TitlePanel" node_paths=PackedStringArray("window", "toClose")]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0
@@ -443,6 +462,7 @@ theme_override_font_sizes/font_size = 26
 text = "X"
 script = ExtResource("6_0ra4g")
 window = NodePath("../..")
+toClose = []
 
 [node name="BuildMode" type="GridContainer" parent="UI/BuildingsPanel"]
 layout_mode = 1
@@ -550,7 +570,7 @@ focus_mode = 0
 disabled = true
 text = "[Accept]"
 
-[node name="CancelButton" type="Button" parent="UI/BuildingMonit" node_paths=PackedStringArray("window")]
+[node name="CancelButton" type="Button" parent="UI/BuildingMonit" node_paths=PackedStringArray("window", "toClose")]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -565,6 +585,7 @@ focus_mode = 0
 text = "[Cancel]"
 script = ExtResource("6_0ra4g")
 window = NodePath("..")
+toClose = []
 
 [node name="Title" type="RichTextLabel" parent="UI/BuildingMonit"]
 layout_mode = 1
@@ -602,7 +623,60 @@ bbcode_enabled = true
 text = "[right]
 [100]/[1000]"
 
+[node name="JobPanel" type="Panel" parent="UI"]
+anchors_preset = -1
+anchor_left = 0.15
+anchor_top = 0.1
+anchor_right = 0.85
+anchor_bottom = 0.9
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitlePanel" type="Panel" parent="UI/JobPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_bottom = 45.0
+
+[node name="Title" type="RichTextLabel" parent="UI/JobPanel/TitlePanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = " [JobTitle]"
+scroll_active = false
+script = ExtResource("7_d4fk0")
+translateInput = PackedStringArray(" [JobTitle]")
+bbCodeStart = "[center]"
+bbCodeEnd = "[/center]"
+
+[node name="CloseBuilding" type="Button" parent="UI/JobPanel/TitlePanel" node_paths=PackedStringArray("window", "toClose")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -45.0
+theme_override_font_sizes/font_size = 26
+text = "X"
+script = ExtResource("6_0ra4g")
+window = NodePath("../..")
+toClose = []
+
+[node name="BuildMode" type="GridContainer" parent="UI/JobPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 45.0
+columns = 5
+
 [connection signal="pressed" from="UI/UpperPanel/Buildings" to="UI/UpperPanel/Buildings" method="Open"]
+[connection signal="pressed" from="UI/UpperPanel/Jobs" to="UI/UpperPanel/Jobs" method="Open"]
 [connection signal="pressed" from="UI/UpperPanel/PlayerButton" to="." method="OnPlayerButtonPressed"]
 [connection signal="pressed" from="UI/MainPlayerPanel/CloseButton" to="UI/MainPlayerPanel/CloseButton" method="Close"]
 [connection signal="pressed" from="UI/BuildingsPanel/TitlePanel/CloseBuilding" to="UI/BuildingsPanel/TitlePanel/CloseBuilding" method="Close"]
@@ -610,3 +684,4 @@ text = "[right]
 [connection signal="pressed" from="UI/BuildingsPanel/StatsPanel" to="UI/BuildingsPanel" method="OpenBuildingPanel" binds= [false]]
 [connection signal="pressed" from="UI/BuildingMonit/AcceptButton" to="UI" method="BuildBuilding"]
 [connection signal="pressed" from="UI/BuildingMonit/CancelButton" to="UI/BuildingMonit/CancelButton" method="Close"]
+[connection signal="pressed" from="UI/JobPanel/TitlePanel/CloseBuilding" to="UI/JobPanel/TitlePanel/CloseBuilding" method="Close"]
