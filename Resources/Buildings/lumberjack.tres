@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Building" load_steps=2 format=3 uid="uid://b3e2fh70xhrer"]
+
+[ext_resource type="Script" path="res://Scripts/Building.cs" id="1_w1oh2"]
+
+[resource]
+script = ExtResource("1_w1oh2")
+Name = "[LumberjackCottage]"
+CostToBuild = {
+0: 25
+}
+EffectiveSkills = Array[int]([0, 2])

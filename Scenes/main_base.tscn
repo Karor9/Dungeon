@@ -1,5 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://d0onbwicvsnn6"]
+[gd_scene load_steps=11 format=3 uid="uid://d0onbwicvsnn6"]
 
+[ext_resource type="Script" path="res://Scenes/Shortcut.cs" id="1_dkwu0"]
 [ext_resource type="Script" path="res://Scripts/SetupUI.cs" id="1_ogpng"]
 [ext_resource type="PackedScene" uid="uid://b47mkukc3pfue" path="res://Scenes/product.tscn" id="3_ef6b4"]
 [ext_resource type="PackedScene" uid="uid://bm60fmnjxg6p2" path="res://Scenes/hero_button.tscn" id="3_xcmh6"]
@@ -10,9 +11,11 @@
 [ext_resource type="PackedScene" uid="uid://bs4f78q7fbwo2" path="res://Scenes/job.tscn" id="6_cchop"]
 [ext_resource type="Script" path="res://Scripts/SetText.cs" id="7_d4fk0"]
 
-[node name="MainBase" type="Control"]
+[node name="MainBase" type="Control" node_paths=PackedStringArray("window")]
 layout_mode = 3
 anchors_preset = 0
+script = ExtResource("1_dkwu0")
+window = [NodePath("UI/BuildingsPanel"), NodePath("UI/MainPlayerPanel"), NodePath("UI/JobPanel"), NodePath("UI/BuildingMonit")]
 
 [node name="UI" type="CanvasLayer" parent="." node_paths=PackedStringArray("heroBox", "heroPanel", "statsPanel", "goodsBox", "buildingBox", "buildingMonit", "buildingPanel", "buildedBox", "jobSkillBox", "jobBox")]
 script = ExtResource("1_ogpng")
@@ -51,6 +54,7 @@ window = NodePath("../../BuildingsPanel")
 toClose = [NodePath("../../BuildingMonit"), NodePath("../../MainPlayerPanel"), NodePath("../../JobPanel")]
 
 [node name="Jobs" type="Button" parent="UI/UpperPanel" node_paths=PackedStringArray("window", "toClose")]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.9
@@ -551,10 +555,11 @@ size_flags_vertical = 3
 [node name="BuildingMonit" type="Panel" parent="UI"]
 visible = false
 anchors_preset = -1
-anchor_left = 0.4
+anchor_left = 0.35
 anchor_top = 0.3
-anchor_right = 0.6
+anchor_right = 0.65
 anchor_bottom = 0.7
+focus_mode = 2
 
 [node name="AcceptButton" type="Button" parent="UI/BuildingMonit"]
 layout_mode = 1
@@ -600,7 +605,7 @@ text = "[center][BuildBuildingMonit][/center]"
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.07
-anchor_right = 0.6
+anchor_right = 0.7
 anchor_bottom = 1.0
 offset_left = 5.0
 offset_right = -5.0
@@ -612,7 +617,7 @@ text = "[BuildRequest] [BuildingName]?
 [node name="RequestList" type="RichTextLabel" parent="UI/BuildingMonit"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.6
+anchor_left = 0.7
 anchor_top = 0.07
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -624,6 +629,7 @@ text = "[right]
 [100]/[1000]"
 
 [node name="JobPanel" type="Panel" parent="UI"]
+visible = false
 anchors_preset = -1
 anchor_left = 0.15
 anchor_top = 0.1
