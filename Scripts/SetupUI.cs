@@ -34,6 +34,7 @@ public partial class SetupUI : CanvasLayer
 	[Export] Container jobBox;
 
 	int ChoosenBuildingToBuild = -1;
+	int ChoosenBuildingId = -1;
 	public override void _Ready()
 	{
         for (int i = 0; i < 5; i++)
@@ -54,13 +55,14 @@ public partial class SetupUI : CanvasLayer
 
 		SetupUIElement<int, Button>(Globals.Instance.GetBuildedBuildings().Keys.ToList(), buildedButton, buildedBox,
 		(building) => Globals.Instance.GetBuilding(building).Name + "\n[Builded]: " +
-					Globals.Instance.GetBuildedBuildingCount(building).ToString());
+					Globals.Instance.GetBuildedBuildingCount(building).ToString(),
+		(id) => ChooseBuldingOption(id));
 
 		SetupUIElement<JobSkill, Panel>(Globals.Instance.GetJobSkills().ToList(), jobSkillButton, jobSkillBox,
 		(skill) => skill.Name);
 
-		SetupUIElement<JobSkill, Button>(Globals.Instance.GetJobSkills().ToList(), jobButton, jobBox,
-		(job) => job.Name);
+		// SetupUIElement<JobSkill, Button>(Globals.Instance.GetJobSkills().ToList(), jobButton, jobBox,
+		// (job) => job.Name);
 	}
 
     private void ChooseHero(int id)
@@ -234,6 +236,7 @@ public partial class SetupUI : CanvasLayer
 			val = val.Split(" ")[0];
 			val += " " + Globals.Instance.GetBuildedBuildingCount(id).ToString();
 			label.Text = val;
+			label.Pressed += () => ChooseBuldingOption(id);
 		} else
 		{
 			Node n = buildedButton.Instantiate();
@@ -242,6 +245,7 @@ public partial class SetupUI : CanvasLayer
 			string val = Globals.Instance.GetBuilding(id).Name + "\n[Builded]: " +
 						Globals.Instance.GetBuildedBuildingCount(id).ToString();
 			button.Text = val;
+			button.Pressed += () => ChooseBuldingOption(id);
 			buildedBox.AddChild(n);
 		}
 	}
@@ -259,5 +263,10 @@ public partial class SetupUI : CanvasLayer
 			ProgressBar progress = (ProgressBar)jobSkillBox.GetChild(i).GetChild(2);
 			progress.Value = val - skillVal;
 		}
+	}
+
+	void ChooseBuldingOption(int id)
+	{
+		GD.Print(id);
 	}
 }

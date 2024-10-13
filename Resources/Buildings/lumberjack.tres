@@ -9,3 +9,4 @@ CostToBuild = {
 0: 25
 }
 EffectiveSkills = Array[int]([0, 2])
+MaxHumansInBuilding = 2
