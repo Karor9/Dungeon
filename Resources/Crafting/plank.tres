@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="CraftingRecipe" load_steps=2 format=3 uid="uid://1fs2djxdk3gk"]
+
+[ext_resource type="Script" path="res://Scripts/CraftingRecipe.cs" id="1_7pa1e"]
+
+[resource]
+script = ExtResource("1_7pa1e")
+Name = "[WoodToPlank]"
+Products = {
+0: 1
+}
+Results = {
+2: 10
+}

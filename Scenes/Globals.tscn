@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ckjn286cuk2e0"]
+[gd_scene load_steps=15 format=3 uid="uid://ckjn286cuk2e0"]
 
 [ext_resource type="Script" path="res://Scripts/Globals.cs" id="1_00y6l"]
 [ext_resource type="Resource" uid="uid://devhtv7851d6h" path="res://Resources/Class/mage.tres" id="2_aylnt"]
@@ -7,6 +7,7 @@
 [ext_resource type="Resource" uid="uid://vp13ii8mfvja" path="res://Resources/Goods/wood.tres" id="5_kjpqw"]
 [ext_resource type="Resource" uid="uid://d1xfbj1jdbcm0" path="res://Resources/Goods/stone.tres" id="6_16jw2"]
 [ext_resource type="Resource" uid="uid://btgy4awclh1od" path="res://Resources/Buildings/sawmill.tres" id="7_84gl3"]
+[ext_resource type="Resource" uid="uid://ck26xdhaqfrnf" path="res://Resources/Goods/plank.tres" id="7_uwfyt"]
 [ext_resource type="Resource" uid="uid://f6jh6c88cupe" path="res://Resources/Buildings/mine.tres" id="8_85f5e"]
 [ext_resource type="Resource" uid="uid://b3e2fh70xhrer" path="res://Resources/Buildings/lumberjack.tres" id="9_cqsq7"]
 [ext_resource type="Resource" uid="uid://bymvywh0uclrd" path="res://Resources/Jobs/Woodcutting.tres" id="9_q278e"]
@@ -17,6 +18,6 @@
 [node name="Node" type="Node"]
 script = ExtResource("1_00y6l")
 Classes = [ExtResource("2_aylnt"), ExtResource("3_xrs3a"), ExtResource("4_pc7u4")]
-Goods = [ExtResource("5_kjpqw"), ExtResource("6_16jw2")]
+Goods = [ExtResource("5_kjpqw"), ExtResource("6_16jw2"), ExtResource("7_uwfyt")]
 Buildings = [ExtResource("7_84gl3"), ExtResource("8_85f5e"), ExtResource("9_cqsq7")]
 JobSkills = [ExtResource("9_q278e"), ExtResource("10_6nl1u"), ExtResource("11_gpraf"), ExtResource("11_iqstl")]

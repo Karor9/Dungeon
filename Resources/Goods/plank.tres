@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Goods" load_steps=3 format=3 uid="uid://ck26xdhaqfrnf"]
+
+[ext_resource type="Texture2D" uid="uid://cl87ypaor331g" path="res://icon.svg" id="1_jpuay"]
+[ext_resource type="Script" path="res://Scripts/Goods.cs" id="1_mloln"]
+
+[resource]
+script = ExtResource("1_mloln")
+Name = "[Plank]"
+Icon = ExtResource("1_jpuay")
+Tags = Array[String](["fuel"])

@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="Building" load_steps=2 format=3 uid="uid://btgy4awclh1od"]
+[gd_resource type="Resource" script_class="Building" load_steps=3 format=3 uid="uid://btgy4awclh1od"]
 
 [ext_resource type="Script" path="res://Scripts/Building.cs" id="1_7ml6x"]
+[ext_resource type="Resource" uid="uid://dhg5e5ol550av" path="res://Resources/Crafting/wood.tres" id="1_xc0le"]
 
 [resource]
 script = ExtResource("1_7ml6x")
@@ -10,3 +11,4 @@ CostToBuild = {
 }
 EffectiveSkills = Array[int]([0])
 MaxHumansInBuilding = 3
+CraftingRecipes = Array[Object]([ExtResource("1_xc0le")])

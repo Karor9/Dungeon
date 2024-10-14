@@ -32,6 +32,11 @@ public partial class SetupUI : CanvasLayer
 	[ExportCategory("BuildingDetail")]
 	[Export] Control buildingDetail;
 
+	[ExportCategory("OwnedBuilding")]
+	[ExportGroup("Craftings")]
+	[Export] Container craftingBox;
+	[Export] PackedScene craftingPanel;
+
 	int ChoosenBuildingToBuild = -1;
 	int ChoosenBuildingId = -1;
 	public override void _Ready()
@@ -58,6 +63,7 @@ public partial class SetupUI : CanvasLayer
 
 		SetupUIElement<JobSkill, Panel>(Globals.Instance.GetJobSkills().ToList(), jobSkillButton, jobSkillBox,
 		(skill) => skill.Name);
+
 
 		// SetupUIElement<JobSkill, Button>(Globals.Instance.GetJobSkills().ToList(), jobButton, jobBox,
 		// (job) => job.Name);
@@ -188,7 +194,7 @@ public partial class SetupUI : CanvasLayer
 		{
 			h = Globals.Instance.GetGood(keys[i]).Count;
 			d = building.CostToBuild[keys[i]];
-			if (h > d)
+			if (h >= d)
 				demandText += "[color=green]";
 			else{
 				demandText += "[color=red]";
@@ -262,8 +268,27 @@ public partial class SetupUI : CanvasLayer
 		buildingDetail.Visible = true;
 
 		RichTextLabel label = (RichTextLabel) buildingDetail.GetChild(0).GetChild(0);
-		label.Name = id.ToString();
-		string text = $"[center]{Tr(Globals.Instance.GetBuilding(id).Name)}[/center]";
+		label.Name = id.ToString(); // Pass id to script TBD
+		Building building = Globals.Instance.GetBuilding(id);
+		string text = $"[center]{Tr(building.Name)}[/center]";
 		label.Text = text;
+		SetupCrafting(building);
 	}
+
+	void SetupCrafting(Building building)
+	{
+		for (int i = 0; i < building.CraftingRecipes.Count; i++)
+		{
+			Node node = craftingPanel.Instantiate();
+			CraftingRecipe item = building.CraftingRecipes[i];
+			node.Name = i.ToString();
+			RichTextLabel label = (RichTextLabel)node.GetChild(0);
+			string text = "[center]" + Tr(item.Name) + "[/center]";
+			label.Text = text;
+			craftingBox.AddChild(node);
+		}
+		return;
+	}
+
+
 }
