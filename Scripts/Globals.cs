@@ -127,6 +127,7 @@ public partial class Globals : Node
         else
             BuildedBuildings[key] = value;
         BuildedBuildings bb = new BuildedBuildings(key, GetBuilding(key));
+        BuildingList.Add(bb);
         return BuildedBuildings[key];
     }
 
@@ -139,4 +140,5 @@ public partial class Globals : Node
     {
         return BuildedBuildings[id];
     }
+
 }

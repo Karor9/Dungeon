@@ -8,6 +8,8 @@ public class BuildedBuildings
     public List<int> EffectiveSkills {get; private set;}
     public int MaxHumansInBuilding;
 
+    public bool Destroyed = false;
+
     public BuildedBuildings(int id, Building building)
     {
         Id = id;

@@ -53,9 +53,8 @@ public partial class SetupUI : CanvasLayer
 		(building) => building.Name,
 		(id) => ChooseBuilding(id));
 
-		SetupUIElement<int, Button>(Globals.Instance.GetBuildedBuildings().Keys.ToList(), buildedButton, buildedBox,
-		(building) => Globals.Instance.GetBuilding(building).Name + "\n[Builded]: " +
-					Globals.Instance.GetBuildedBuildingCount(building).ToString(),
+		SetupUIElement<BuildedBuildings, Button>(Globals.Instance.GetBuildingList(), buildedButton, buildedBox,
+		(building) => Globals.Instance.GetBuilding(building.Id).Name,
 		(id) => ChooseBuldingOption(id));
 
 		SetupUIElement<JobSkill, Panel>(Globals.Instance.GetJobSkills().ToList(), jobSkillButton, jobSkillBox,
@@ -229,24 +228,17 @@ public partial class SetupUI : CanvasLayer
 
 	void AddBuildedBuilding(int count, int id)
 	{
-		if(count > 1)
-		{
-			Button label = (Button)buildedBox.GetNode(id.ToString());
-			string val = label.Text;
-			val = val.Split(" ")[0];
-			val += " " + Globals.Instance.GetBuildedBuildingCount(id).ToString();
-			label.Text = val;
-			label.Pressed += () => ChooseBuldingOption(id);
-		} else
+		if(count >= 1)
 		{
 			Node n = buildedButton.Instantiate();
 			Button button = (Button)n;
-			button.Name = id.ToString();
-			string val = Globals.Instance.GetBuilding(id).Name + "\n[Builded]: " +
-						Globals.Instance.GetBuildedBuildingCount(id).ToString();
+			button.Name = id.ToString() + "_" + Globals.Instance.GetBuildingList().Count;
+			Building building = Globals.Instance.GetBuilding(id);
+			string val = building.Name;
 			button.Text = val;
 			button.Pressed += () => ChooseBuldingOption(id);
 			buildedBox.AddChild(n);
+
 		}
 	}
 
