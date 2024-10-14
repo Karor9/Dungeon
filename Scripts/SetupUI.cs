@@ -29,9 +29,8 @@ public partial class SetupUI : CanvasLayer
 	[Export] PackedScene jobSkillButton;
 	[Export] Container jobSkillBox;
 
-	[ExportCategory("Jobs")]
-	[Export] PackedScene jobButton;
-	[Export] Container jobBox;
+	[ExportCategory("BuildingDetail")]
+	[Export] Control buildingDetail;
 
 	int ChoosenBuildingToBuild = -1;
 	int ChoosenBuildingId = -1;
@@ -259,6 +258,12 @@ public partial class SetupUI : CanvasLayer
 
 	void ChooseBuldingOption(int id)
 	{
-		GD.Print(id);
+		buildingPanel.Visible = false;
+		buildingDetail.Visible = true;
+
+		RichTextLabel label = (RichTextLabel) buildingDetail.GetChild(0).GetChild(0);
+		label.Name = id.ToString();
+		string text = $"[center]{Tr(Globals.Instance.GetBuilding(id).Name)}[/center]";
+		label.Text = text;
 	}
 }

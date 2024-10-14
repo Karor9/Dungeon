@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://d0onbwicvsnn6"]
+[gd_scene load_steps=10 format=3 uid="uid://d0onbwicvsnn6"]
 
 [ext_resource type="Script" path="res://Scripts/SetupUI.cs" id="1_ogpng"]
 [ext_resource type="Script" path="res://Scripts/Shortcut.cs" id="1_rh72n"]
@@ -8,16 +8,15 @@
 [ext_resource type="PackedScene" uid="uid://gi4rboqw8u1f" path="res://Scenes/job_panel_skill.tscn" id="5_amuss"]
 [ext_resource type="Script" path="res://Scripts/BuildingPanel.cs" id="5_xcso5"]
 [ext_resource type="Script" path="res://Scripts/CloseWindow.cs" id="6_0ra4g"]
-[ext_resource type="PackedScene" uid="uid://bs4f78q7fbwo2" path="res://Scenes/job.tscn" id="6_cchop"]
 [ext_resource type="Script" path="res://Scripts/SetText.cs" id="7_d4fk0"]
 
 [node name="MainBase" type="Control" node_paths=PackedStringArray("window")]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_rh72n")
-window = [NodePath("UI/BuildingsPanel"), NodePath("UI/MainPlayerPanel"), NodePath("UI/JobPanel"), NodePath("UI/BuildingPanel"), NodePath("UI/BuildingMonit")]
+window = [NodePath("UI/BuildingsPanel"), NodePath("UI/MainPlayerPanel"), NodePath("UI/JobPanel"), NodePath("UI/ActiveBuilding"), NodePath("UI/BuildingMonit")]
 
-[node name="UI" type="CanvasLayer" parent="." node_paths=PackedStringArray("heroBox", "heroPanel", "statsPanel", "goodsBox", "buildingBox", "buildingMonit", "buildingPanel", "buildedBox", "jobSkillBox", "jobBox")]
+[node name="UI" type="CanvasLayer" parent="." node_paths=PackedStringArray("heroBox", "heroPanel", "statsPanel", "goodsBox", "buildingBox", "buildingMonit", "buildingPanel", "buildedBox", "jobSkillBox", "buildingDetail")]
 script = ExtResource("1_ogpng")
 heroButton = ExtResource("3_xcmh6")
 heroBox = NodePath("HeroesPanel/ScrollContainer/HeroesBox")
@@ -33,8 +32,7 @@ buildedButton = ExtResource("4_joorj")
 buildedBox = NodePath("BuildingsPanel/BuildingsActive")
 jobSkillButton = ExtResource("5_amuss")
 jobSkillBox = NodePath("MainPlayerPanel/GridContainer/GridContainer")
-jobButton = ExtResource("6_cchop")
-jobBox = NodePath("JobPanel/BuildMode")
+buildingDetail = NodePath("ActiveBuilding")
 
 [node name="UpperPanel" type="Panel" parent="UI"]
 anchors_preset = 10
@@ -681,21 +679,20 @@ anchor_bottom = 1.0
 offset_top = 45.0
 columns = 5
 
-[node name="BuildingPanel" type="Panel" parent="UI"]
-visible = false
+[node name="ActiveBuilding" type="Panel" parent="UI"]
 anchors_preset = -1
 anchor_left = 0.15
 anchor_top = 0.1
 anchor_right = 0.85
 anchor_bottom = 0.9
 
-[node name="NamePanel" type="Panel" parent="UI/BuildingPanel"]
+[node name="NamePanel" type="Panel" parent="UI/ActiveBuilding"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 offset_bottom = 35.0
 
-[node name="NameLabel" type="RichTextLabel" parent="UI/BuildingPanel/NamePanel"]
+[node name="NameLabel" type="RichTextLabel" parent="UI/ActiveBuilding/NamePanel"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -709,7 +706,7 @@ grow_vertical = 2
 bbcode_enabled = true
 text = "[BuildingName]"
 
-[node name="CloseButton" type="Button" parent="UI/BuildingPanel" node_paths=PackedStringArray("window", "toClose")]
+[node name="CloseButton" type="Button" parent="UI/ActiveBuilding" node_paths=PackedStringArray("window", "toClose")]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0
@@ -721,20 +718,20 @@ script = ExtResource("6_0ra4g")
 window = NodePath("..")
 toClose = []
 
-[node name="Production" type="Panel" parent="UI/BuildingPanel"]
+[node name="Craftings" type="Panel" parent="UI/ActiveBuilding"]
 layout_mode = 1
 anchors_preset = -1
+anchor_top = 0.4
 anchor_right = 0.4
 anchor_bottom = 1.0
-offset_top = 35.0
 
-[node name="PeopleInBuilding" type="Panel" parent="UI/BuildingPanel"]
+[node name="PeopleInBuilding" type="Panel" parent="UI/ActiveBuilding"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.4
+anchor_top = 0.4
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 35.0
 
 [connection signal="pressed" from="UI/UpperPanel/Buildings" to="UI/UpperPanel/Buildings" method="Open"]
 [connection signal="pressed" from="UI/UpperPanel/Jobs" to="UI/UpperPanel/Jobs" method="Open"]
@@ -746,4 +743,4 @@ offset_top = 35.0
 [connection signal="pressed" from="UI/BuildingMonit/AcceptButton" to="UI" method="BuildBuilding"]
 [connection signal="pressed" from="UI/BuildingMonit/CancelButton" to="UI/BuildingMonit/CancelButton" method="Close"]
 [connection signal="pressed" from="UI/JobPanel/TitlePanel/CloseBuilding" to="UI/JobPanel/TitlePanel/CloseBuilding" method="Close"]
-[connection signal="pressed" from="UI/BuildingPanel/CloseButton" to="UI/BuildingPanel/CloseButton" method="Close"]
+[connection signal="pressed" from="UI/ActiveBuilding/CloseButton" to="UI/ActiveBuilding/CloseButton" method="Close"]
