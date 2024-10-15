@@ -64,7 +64,8 @@ public partial class SetupUI : CanvasLayer
 		SetupUIElement<JobSkill, Panel>(Globals.Instance.GetJobSkills().ToList(), jobSkillButton, jobSkillBox,
 		(skill) => skill.Name);
 
-
+		UsableItem item = (UsableItem)Globals.Instance.GetGood(3);
+		GD.Print(item.Durability);
 		// SetupUIElement<JobSkill, Button>(Globals.Instance.GetJobSkills().ToList(), jobButton, jobBox,
 		// (job) => job.Name);
 	}
