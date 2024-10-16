@@ -1,9 +1,10 @@
 using Godot;
 
 [GlobalClass]
-public partial class ProductionRecipe : CraftingRecipe
+public partial class ProductionRecipe : RecipeBase
 {
-    [Export] public new Godot.Collections.Array<int> Products;
+    [Export] public Godot.Collections.Array<int> Products;
+    [Export] public Godot.Collections.Dictionary<int, int> Results;
 
     public ProductionRecipe() : this("") {}
 

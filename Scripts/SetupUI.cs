@@ -54,7 +54,8 @@ public partial class SetupUI : CanvasLayer
 		(id) => ChooseHero(id));
 
 		SetupUIElement<Goods, Button>(Globals.Instance.GetGoods().ToList(), goodsButton, goodsBox,
-		(good) => good.Name + "\n" + good.Count);
+		(good) => good.Name + "\n" + good.Count, 
+		getIcon: (good) => good.Icon);
 
 		SetupUIElement<Building, Button>(Globals.Instance.GetBuildings().ToList(), buildingButton, buildingBox,
 		(building) => building.Name,
@@ -116,7 +117,7 @@ public partial class SetupUI : CanvasLayer
 
 
 	void SetupUIElement<TItem, TNode>(List<TItem> items, PackedScene sceneToInit, Container container,
-	Func<TItem, string> getText, Action<int> onPressed = null, Texture2D iconButton = null) where TNode : Control
+	Func<TItem, string> getText, Action<int> onPressed = null, Func<TItem, Texture2D> getIcon = null) where TNode : Control
 	{
 		for (int i = 0; i < items.Count; i++)
 		{
@@ -131,6 +132,11 @@ public partial class SetupUI : CanvasLayer
 					if(item is Human hero)
 					{
 						isAlive = hero.IsAlive;
+					}
+					if(getIcon != null)
+					{
+						var icon = getIcon(item);
+						button.Icon = icon;
 					}
 					if(isAlive)
 					{
@@ -274,12 +280,18 @@ public partial class SetupUI : CanvasLayer
 		Building building = Globals.Instance.GetBuilding(id);
 		string text = $"[center]{Tr(building.Name)}[/center]";
 		label.Text = text;
+		SetupRecipes(building);
+	}
+
+	void SetupRecipes(Building building)
+	{
+		ClearContainer(craftingBox);
 		SetupCrafting(building);
 		SetupProduction(building);
 	}
+
 	void SetupCrafting(Building building)
 	{
-		ClearContainer(craftingBox);
 		for (int i = 0; i < building.CraftingRecipes.Count; i++)
 		{
 			Node node = craftingPanel.Instantiate();
@@ -297,12 +309,38 @@ public partial class SetupUI : CanvasLayer
 	{
 		for (int i = 0; i < building.Productions.Count; i++)
 		{
-			Node node = craftingPanel.Instantiate();
+			Node node = productionPanel.Instantiate();
 			ProductionRecipe item = building.Productions[i];
+
+			//Setup Text
 			RichTextLabel label = (RichTextLabel)node.GetChild(0);
 			string text = "[center]" + Tr(item.Name) + "[/center]";
 			label.Text = text;
 			node.Name = "p_" + i.ToString();
+
+			//Setup Button
+			// TextureButton worker = (TextureButton)node.GetChild(1).GetChild(0);
+			// worker.Pressed += () => AssignWorker();
+
+			//Setup Products
+			Godot.Collections.Array<int> prods = building.Productions[i].Products;
+			for (int j = 0; j < prods.Count; j++)
+			{
+				int p = prods[j];
+				TextureRect prod = node.GetChild(1).GetChild(j + 1) as TextureRect;
+				prod.Texture = Globals.Instance.GetGood(p).Icon;
+			}
+
+			//Setup Results
+			List<int> results = building.Productions[i].Results.Keys.ToList();
+			for (int j = 0; j < results.Count; j++)
+			{
+				int r = results[j];
+				TextureRect res = node.GetChild(1).GetChild(j + 6) as TextureRect;
+				res.Texture = Globals.Instance.GetGood(r).Icon;
+			}
+
+			//Add to viewport
 			craftingBox.AddChild(node);
 		}
 	}
@@ -315,5 +353,8 @@ public partial class SetupUI : CanvasLayer
 		}
 	}
 
-
+	void AssignWorker()
+	{
+		GD.Print("TBD");
+	}
 }

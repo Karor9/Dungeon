@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="Goods" load_steps=3 format=3 uid="uid://vp13ii8mfvja"]
 
-[ext_resource type="Texture2D" uid="uid://cl87ypaor331g" path="res://icon.svg" id="1_a12wy"]
+[ext_resource type="Texture2D" uid="uid://dofdh6366f2ff" path="res://Assets/Lic/logs.png" id="1_nvavq"]
 [ext_resource type="Script" path="res://Scripts/Goods.cs" id="1_s71gx"]
 
 [resource]
 script = ExtResource("1_s71gx")
 Name = "[Wood]"
-Icon = ExtResource("1_a12wy")
+Icon = ExtResource("1_nvavq")
 Tags = Array[String](["fuel"])

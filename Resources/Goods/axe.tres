@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="UsableItem" load_steps=3 format=3 uid="uid://bueojo5qgcjs6"]
 
 [ext_resource type="Script" path="res://Scripts/UsableItem.cs" id="1_ajsmy"]
-[ext_resource type="Texture2D" uid="uid://cl87ypaor331g" path="res://icon.svg" id="1_d1nrd"]
+[ext_resource type="Texture2D" uid="uid://cb8cdgkv56i2r" path="res://Assets/Lic/axe.png" id="1_me74x"]
 
 [resource]
 script = ExtResource("1_ajsmy")
 Durability = 1520.0
 Name = "[Axe]"
-Icon = ExtResource("1_d1nrd")
+Icon = ExtResource("1_me74x")
 Tags = Array[String](["tool"])

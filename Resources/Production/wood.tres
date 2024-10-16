@@ -5,8 +5,7 @@
 [resource]
 script = ExtResource("1_twvrl")
 Products = Array[int]([3])
-Name = "[WoodProduction]"
-Products = Array[int]([3])
 Results = {
 0: 5
 }
+Name = "[WoodProduction]"
