@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://d0onbwicvsnn6"]
+[gd_scene load_steps=12 format=3 uid="uid://d0onbwicvsnn6"]
 
 [ext_resource type="Script" path="res://Scripts/SetupUI.cs" id="1_ogpng"]
 [ext_resource type="Script" path="res://Scripts/Shortcut.cs" id="1_rh72n"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://Scripts/CloseWindow.cs" id="6_0ra4g"]
 [ext_resource type="Script" path="res://Scripts/SetText.cs" id="7_d4fk0"]
 [ext_resource type="PackedScene" uid="uid://qxcmh2vkj7tj" path="res://Scenes/recipe_panel.tscn" id="7_nevhl"]
+[ext_resource type="PackedScene" uid="uid://b2g7h38g2slag" path="res://Scenes/recipe.tscn" id="8_8kfx0"]
 
 [node name="MainBase" type="Control" node_paths=PackedStringArray("window")]
 layout_mode = 3
@@ -36,6 +37,7 @@ jobSkillBox = NodePath("MainPlayerPanel/GridContainer/GridContainer")
 buildingDetail = NodePath("ActiveBuilding")
 craftingBox = NodePath("ActiveBuilding/Craftings/ScrollContainer/CraftingContainer")
 craftingPanel = ExtResource("7_nevhl")
+productionPanel = ExtResource("8_8kfx0")
 
 [node name="UpperPanel" type="Panel" parent="UI"]
 anchors_preset = 10
@@ -724,9 +726,9 @@ toClose = []
 [node name="Craftings" type="Panel" parent="UI/ActiveBuilding"]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.4
-anchor_right = 0.4
+anchor_right = 0.5
 anchor_bottom = 1.0
+offset_top = 35.0
 
 [node name="ScrollContainer" type="ScrollContainer" parent="UI/ActiveBuilding/Craftings"]
 layout_mode = 1
@@ -741,14 +743,6 @@ horizontal_scroll_mode = 0
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-
-[node name="PeopleInBuilding" type="Panel" parent="UI/ActiveBuilding"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.4
-anchor_top = 0.4
-anchor_right = 1.0
-anchor_bottom = 1.0
 
 [connection signal="pressed" from="UI/UpperPanel/Buildings" to="UI/UpperPanel/Buildings" method="Open"]
 [connection signal="pressed" from="UI/UpperPanel/Jobs" to="UI/UpperPanel/Jobs" method="Open"]

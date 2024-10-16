@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="Goods" load_steps=3 format=3 uid="uid://d1xfbj1jdbcm0"]
 
 [ext_resource type="Script" path="res://Scripts/Goods.cs" id="1_a67ti"]
-[ext_resource type="Texture2D" uid="uid://cl87ypaor331g" path="res://icon.svg" id="1_ceb3j"]
+[ext_resource type="Texture2D" uid="uid://cfm4juj4336qk" path="res://Assets/Lic/stone.png" id="1_ykf1i"]
 
 [resource]
 script = ExtResource("1_a67ti")
 Name = "[Stone]"
-Icon = ExtResource("1_ceb3j")
+Icon = ExtResource("1_ykf1i")
 Tags = Array[String]([])
