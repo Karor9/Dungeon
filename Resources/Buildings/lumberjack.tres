@@ -1,8 +1,7 @@
-[gd_resource type="Resource" script_class="Building" load_steps=4 format=3 uid="uid://b3e2fh70xhrer"]
+[gd_resource type="Resource" script_class="Building" load_steps=3 format=3 uid="uid://b3e2fh70xhrer"]
 
 [ext_resource type="Resource" uid="uid://gunag1yoxerf" path="res://Resources/Production/wood.tres" id="1_a7cev"]
 [ext_resource type="Script" path="res://Scripts/Building.cs" id="1_w1oh2"]
-[ext_resource type="Resource" uid="uid://1fs2djxdk3gk" path="res://Resources/Crafting/plank.tres" id="2_g82qk"]
 
 [resource]
 script = ExtResource("1_w1oh2")
@@ -12,5 +11,5 @@ CostToBuild = {
 }
 EffectiveSkills = Array[int]([0, 2])
 MaxHumansInBuilding = 2
-CraftingRecipes = Array[Object]([ExtResource("2_g82qk")])
+CraftingRecipes = null
 Productions = Array[Object]([ExtResource("1_a7cev")])

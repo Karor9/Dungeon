@@ -9,7 +9,7 @@
 [ext_resource type="Script" path="res://Scripts/BuildingPanel.cs" id="5_xcso5"]
 [ext_resource type="Script" path="res://Scripts/CloseWindow.cs" id="6_0ra4g"]
 [ext_resource type="Script" path="res://Scripts/SetText.cs" id="7_d4fk0"]
-[ext_resource type="PackedScene" uid="uid://qxcmh2vkj7tj" path="res://Scenes/recipe_panel.tscn" id="7_nevhl"]
+[ext_resource type="PackedScene" path="res://Scenes/recipe_panel.tscn" id="7_nevhl"]
 [ext_resource type="PackedScene" uid="uid://b2g7h38g2slag" path="res://Scenes/recipe.tscn" id="8_8kfx0"]
 
 [node name="MainBase" type="Control" node_paths=PackedStringArray("window")]
@@ -744,6 +744,25 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
+[node name="Recipe" parent="UI/ActiveBuilding/Craftings/ScrollContainer/CraftingContainer" instance=ExtResource("8_8kfx0")]
+layout_mode = 2
+
+[node name="RestPanel" parent="UI/ActiveBuilding/Craftings/ScrollContainer/CraftingContainer/Recipe" index="1"]
+anchor_bottom = 0.84
+
+[node name="Worker" parent="UI/ActiveBuilding/Craftings/ScrollContainer/CraftingContainer/Recipe/RestPanel" index="0"]
+anchor_top = 0.1
+anchor_bottom = 0.9
+
+[node name="ProgressBar" type="ProgressBar" parent="UI/ActiveBuilding/Craftings/ScrollContainer/CraftingContainer/Recipe"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.9
+anchor_right = 1.0
+anchor_bottom = 1.0
+rounded = true
+show_percentage = false
+
 [connection signal="pressed" from="UI/UpperPanel/Buildings" to="UI/UpperPanel/Buildings" method="Open"]
 [connection signal="pressed" from="UI/UpperPanel/Jobs" to="UI/UpperPanel/Jobs" method="Open"]
 [connection signal="pressed" from="UI/UpperPanel/PlayerButton" to="." method="OnPlayerButtonPressed"]
@@ -755,3 +774,5 @@ size_flags_vertical = 3
 [connection signal="pressed" from="UI/BuildingMonit/CancelButton" to="UI/BuildingMonit/CancelButton" method="Close"]
 [connection signal="pressed" from="UI/JobPanel/TitlePanel/CloseBuilding" to="UI/JobPanel/TitlePanel/CloseBuilding" method="Close"]
 [connection signal="pressed" from="UI/ActiveBuilding/CloseButton" to="UI/ActiveBuilding/CloseButton" method="Close"]
+
+[editable path="UI/ActiveBuilding/Craftings/ScrollContainer/CraftingContainer/Recipe"]

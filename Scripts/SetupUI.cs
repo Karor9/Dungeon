@@ -324,22 +324,27 @@ public partial class SetupUI : CanvasLayer
 
 			//Setup Products
 			Godot.Collections.Array<int> prods = building.Productions[i].Products;
-			for (int j = 0; j < prods.Count; j++)
+			if(prods != null)
 			{
-				int p = prods[j];
-				TextureRect prod = node.GetChild(1).GetChild(j + 1) as TextureRect;
-				prod.Texture = Globals.Instance.GetGood(p).Icon;
+				for (int j = 0; j < prods.Count; j++)
+				{
+					int p = prods[j];
+					TextureRect prod = node.GetChild(1).GetChild(j + 1) as TextureRect;
+					prod.Texture = Globals.Instance.GetGood(p).Icon;
+				}
 			}
 
 			//Setup Results
 			List<int> results = building.Productions[i].Results.Keys.ToList();
-			for (int j = 0; j < results.Count; j++)
+			if(results != null)
 			{
-				int r = results[j];
-				TextureRect res = node.GetChild(1).GetChild(j + 6) as TextureRect;
-				res.Texture = Globals.Instance.GetGood(r).Icon;
+				for (int j = 0; j < results.Count; j++)
+				{
+					int r = results[j];
+					TextureRect res = node.GetChild(1).GetChild(j + 6) as TextureRect;
+					res.Texture = Globals.Instance.GetGood(r).Icon;
+				}
 			}
-
 			//Add to viewport
 			craftingBox.AddChild(node);
 		}
