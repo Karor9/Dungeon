@@ -38,6 +38,7 @@ folder_colors={
 "res://Resources/Crafting/": "gray",
 "res://Resources/Goods/": "yellow",
 "res://Resources/Jobs/": "blue",
+"res://Resources/Production/": "teal",
 "res://Scenes/": "purple",
 "res://Scripts/": "pink"
 }

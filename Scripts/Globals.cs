@@ -64,12 +64,12 @@ public partial class Globals : Node
         return null;
     }
 
-    public UsableItem GetUsableItem(int id)
-    {
-        if(id > -1 && id < Goods.Count)
-            return (UsableItem)Goods[id];
-        return null;
-    }
+    // public UsableItem GetUsableItem(int id)
+    // {
+    //     if(id > -1 && id < Goods.Count)
+    //         return (UsableItem)Goods[id];
+    //     return null;
+    // }
 
     public List<Human> GetHeroes()
     {

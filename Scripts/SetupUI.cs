@@ -36,6 +36,9 @@ public partial class SetupUI : CanvasLayer
 	[ExportGroup("Craftings")]
 	[Export] Container craftingBox;
 	[Export] PackedScene craftingPanel;
+	
+	[ExportGroup("Production")]
+	[Export] PackedScene productionPanel;
 
 	int ChoosenBuildingToBuild = -1;
 	int ChoosenBuildingId = -1;
@@ -64,8 +67,6 @@ public partial class SetupUI : CanvasLayer
 		SetupUIElement<JobSkill, Panel>(Globals.Instance.GetJobSkills().ToList(), jobSkillButton, jobSkillBox,
 		(skill) => skill.Name);
 
-		UsableItem item = (UsableItem)Globals.Instance.GetGood(3);
-		GD.Print(item.Durability);
 		// SetupUIElement<JobSkill, Button>(Globals.Instance.GetJobSkills().ToList(), jobButton, jobBox,
 		// (job) => job.Name);
 	}
@@ -274,21 +275,44 @@ public partial class SetupUI : CanvasLayer
 		string text = $"[center]{Tr(building.Name)}[/center]";
 		label.Text = text;
 		SetupCrafting(building);
+		SetupProduction(building);
 	}
-
 	void SetupCrafting(Building building)
 	{
+		ClearContainer(craftingBox);
 		for (int i = 0; i < building.CraftingRecipes.Count; i++)
 		{
 			Node node = craftingPanel.Instantiate();
 			CraftingRecipe item = building.CraftingRecipes[i];
-			node.Name = i.ToString();
 			RichTextLabel label = (RichTextLabel)node.GetChild(0);
 			string text = "[center]" + Tr(item.Name) + "[/center]";
 			label.Text = text;
+			node.Name = "c_" + i.ToString();
 			craftingBox.AddChild(node);
 		}
 		return;
+	}
+
+	void SetupProduction(Building building)
+	{
+		for (int i = 0; i < building.Productions.Count; i++)
+		{
+			Node node = craftingPanel.Instantiate();
+			ProductionRecipe item = building.Productions[i];
+			RichTextLabel label = (RichTextLabel)node.GetChild(0);
+			string text = "[center]" + Tr(item.Name) + "[/center]";
+			label.Text = text;
+			node.Name = "p_" + i.ToString();
+			craftingBox.AddChild(node);
+		}
+	}
+
+	void ClearContainer(Container container)
+	{
+		foreach (var item in container.GetChildren())
+		{
+			item.QueueFree();
+		}
 	}
 
 
