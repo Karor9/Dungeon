@@ -319,8 +319,8 @@ public partial class SetupUI : CanvasLayer
 			node.Name = "p_" + i.ToString();
 
 			//Setup Button
-			// TextureButton worker = (TextureButton)node.GetChild(1).GetChild(0);
-			// worker.Pressed += () => AssignWorker();
+			TextureButton worker = (TextureButton)node.GetChild(1).GetChild(0);
+			worker.Pressed += () => AssignWorker();
 
 			//Setup Products
 			Godot.Collections.Array<int> prods = building.Productions[i].Products;
