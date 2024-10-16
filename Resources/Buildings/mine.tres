@@ -11,4 +11,3 @@ CostToBuild = {
 EffectiveSkills = Array[int]([1])
 MaxHumansInBuilding = 4
 CraftingRecipes = null
-Productions = null

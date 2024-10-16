@@ -4,10 +4,10 @@
 
 [resource]
 script = ExtResource("1_7pa1e")
+Name = "[WoodToPlank]"
 Products = {
 0: 1
 }
 Results = {
 2: 10
 }
-Name = "[WoodToPlank]"

@@ -5,11 +5,11 @@
 
 [sub_resource type="Resource" id="Resource_0rqhi"]
 script = ExtResource("1_8kw5n")
+Name = "[TreeToWood]"
 Products = null
 Results = {
 0: 5
 }
-Name = "[TreeToWood]"
 
 [resource]
 script = ExtResource("1_7ml6x")
@@ -20,4 +20,3 @@ CostToBuild = {
 EffectiveSkills = Array[int]([0])
 MaxHumansInBuilding = 3
 CraftingRecipes = Array[Object]([SubResource("Resource_0rqhi")])
-Productions = null
