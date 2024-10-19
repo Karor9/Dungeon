@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cwbtwsvfu2vxh"]
 
-[ext_resource type="Script" path="res://Scripts/Console.cs" id="1_v5lgy"]
+[ext_resource type="Script" path="res://Old_Scripts/Console.cs" id="1_v5lgy"]
 
 [node name="Console" type="Control" node_paths=PackedStringArray("console", "confirm", "history", "inputText")]
 layout_mode = 3

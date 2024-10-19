@@ -1,7 +1,0 @@
-[gd_resource type="Resource" script_class="JobSkill" load_steps=2 format=3 uid="uid://wmfrxsgq260h"]
-
-[ext_resource type="Script" path="res://Scripts/JobSkill.cs" id="1_eb1g3"]
-
-[resource]
-script = ExtResource("1_eb1g3")
-Name = "[Shooting]"

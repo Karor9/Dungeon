@@ -11,14 +11,14 @@ config_version=5
 [application]
 
 config/name="Dungeon"
-run/main_scene="res://Scenes/main_base.tscn"
+run/main_scene="res://Old_Scenes/main_base.tscn"
 config/features=PackedStringArray("4.3", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-Globals="*res://Scenes/Globals.tscn"
-Console="*res://Scenes/console.tscn"
+Globals="*res://Old_Scenes/Globals.tscn"
+Console="*res://Old_Scenes/console.tscn"
 
 [display]
 
@@ -33,14 +33,8 @@ project/assembly_name="Dungeon"
 [file_customization]
 
 folder_colors={
-"res://Resources/Buildings/": "orange",
-"res://Resources/Class/": "green",
-"res://Resources/Crafting/": "gray",
-"res://Resources/Goods/": "yellow",
-"res://Resources/Jobs/": "blue",
-"res://Resources/Production/": "teal",
-"res://Scenes/": "purple",
-"res://Scripts/": "pink"
+"res://Old_Scenes/": "purple",
+"res://Old_Scripts/": "pink"
 }
 
 [gui]

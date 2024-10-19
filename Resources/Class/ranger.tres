@@ -1,7 +1,0 @@
-[gd_resource type="Resource" script_class="HumanClass" load_steps=2 format=3 uid="uid://dh6ei4k0sidam"]
-
-[ext_resource type="Script" path="res://Scripts/HumanClass.cs" id="1_7fgsi"]
-
-[resource]
-script = ExtResource("1_7fgsi")
-ClassName = "[Ranger]"
