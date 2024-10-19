@@ -9,7 +9,7 @@
 [ext_resource type="Script" path="res://Scripts/BuildingPanel.cs" id="5_xcso5"]
 [ext_resource type="Script" path="res://Scripts/CloseWindow.cs" id="6_0ra4g"]
 [ext_resource type="Script" path="res://Scripts/SetText.cs" id="7_d4fk0"]
-[ext_resource type="PackedScene" path="res://Scenes/recipe_panel.tscn" id="7_nevhl"]
+[ext_resource type="PackedScene" uid="uid://qxcmh2vkj7tj" path="res://Scenes/recipe_panel.tscn" id="7_nevhl"]
 [ext_resource type="PackedScene" uid="uid://b2g7h38g2slag" path="res://Scenes/recipe.tscn" id="8_8kfx0"]
 
 [node name="MainBase" type="Control" node_paths=PackedStringArray("window")]
