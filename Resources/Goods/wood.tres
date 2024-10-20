@@ -7,4 +7,3 @@
 script = ExtResource("1_cpnxg")
 Name = "[Wood]"
 Icon = ExtResource("1_nhuf6")
-Tags = Array[Node]([null])

@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://yhw7htkw8bch"]
+[gd_scene load_steps=4 format=3 uid="uid://yhw7htkw8bch"]
 
 [ext_resource type="Script" path="res://Scripts/Globals.cs" id="1_7lcqf"]
+[ext_resource type="Resource" uid="uid://03i4ujxjukw5" path="res://Resources/Goods/wood.tres" id="2_idm86"]
+[ext_resource type="Resource" uid="uid://ctxasth2fttwh" path="res://Resources/Goods/stone.tres" id="3_xmvoo"]
 
 [node name="Globals" type="Node"]
 script = ExtResource("1_7lcqf")
+Goods = Array[Object]([ExtResource("2_idm86"), ExtResource("3_xmvoo")])
