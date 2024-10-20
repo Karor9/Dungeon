@@ -8,5 +8,6 @@ public partial class Globals : Node
     public override void _Ready()
     {
         Instance = this;
+        GD.Print("eo");
     }
 }
