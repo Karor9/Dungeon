@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Tools" load_steps=3 format=3 uid="uid://ck1wy3mqf4iqn"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/Goods/Tools.cs" id="1_2sncs"]
+[ext_resource type="Texture2D" uid="uid://cb8cdgkv56i2r" path="res://Assets/Lic/axe.png" id="1_va8ke"]
+
+[resource]
+script = ExtResource("1_2sncs")
+Durability = 1500.0
+Name = "[Axe]"
+Icon = ExtResource("1_va8ke")

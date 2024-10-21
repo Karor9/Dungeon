@@ -8,6 +8,8 @@ public partial class Goods : Resource
     [Export] public Texture2D Icon {get; set;}
     [Export] public Fuel FuelComponent {get; set;} = null;
 
+    [Export] public Food FoodComponent {get; set;} = null;
+
 
     public Goods() : this("[BlankGoodsName]", null) {}
 

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Goods" load_steps=5 format=3 uid="uid://dqj8wgo8aw335"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/Goods/Goods.cs" id="1_5qx62"]
+[ext_resource type="Script" path="res://Scripts/Resources/Goods/Food.cs" id="1_yd886"]
+[ext_resource type="Texture2D" uid="uid://cy15nwv48jfq" path="res://Assets/Lic/bread.png" id="2_7jhff"]
+
+[sub_resource type="Resource" id="Resource_6oplx"]
+script = ExtResource("1_yd886")
+NutritionValue = 264.6
+
+[resource]
+script = ExtResource("1_5qx62")
+Name = "[Bread]"
+Icon = ExtResource("2_7jhff")
+FoodComponent = SubResource("Resource_6oplx")
