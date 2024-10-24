@@ -10,9 +10,5 @@ public partial class Debug : Control
 
     public override void _Input(InputEvent @event)
     {
-        if(@event.IsActionPressed("ui_accept"))
-        {
-            GD.Print(Globals.Instance.Goods.Count);
-        }
     }
 }

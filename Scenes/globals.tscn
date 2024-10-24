@@ -1,12 +1,12 @@
 [gd_scene load_steps=7 format=3 uid="uid://yhw7htkw8bch"]
 
-[ext_resource type="Script" path="res://Scripts/Globals.cs" id="1_7lcqf"]
-[ext_resource type="Resource" uid="uid://03i4ujxjukw5" path="res://Resources/Goods/wood.tres" id="2_35a6u"]
-[ext_resource type="Resource" uid="uid://ctxasth2fttwh" path="res://Resources/Goods/stone.tres" id="3_83781"]
-[ext_resource type="Resource" uid="uid://ck1wy3mqf4iqn" path="res://Resources/Goods/axe.tres" id="4_5eq7y"]
-[ext_resource type="Resource" uid="uid://6qqgkpiejskm" path="res://Resources/Goods/coal.tres" id="5_dcfwp"]
-[ext_resource type="Resource" uid="uid://dqj8wgo8aw335" path="res://Resources/Goods/bread.tres" id="6_8em0r"]
+[ext_resource type="Script" path="res://Scripts/Globals.cs" id="1_35a6u"]
+[ext_resource type="Resource" uid="uid://03i4ujxjukw5" path="res://Resources/Goods/wood.tres" id="2_83781"]
+[ext_resource type="Resource" uid="uid://ctxasth2fttwh" path="res://Resources/Goods/stone.tres" id="3_5eq7y"]
+[ext_resource type="Resource" uid="uid://ck1wy3mqf4iqn" path="res://Resources/Goods/axe.tres" id="4_dcfwp"]
+[ext_resource type="Resource" uid="uid://6qqgkpiejskm" path="res://Resources/Goods/coal.tres" id="5_8em0r"]
+[ext_resource type="Resource" uid="uid://dqj8wgo8aw335" path="res://Resources/Goods/bread.tres" id="6_f48le"]
 
 [node name="Globals" type="Node"]
-script = ExtResource("1_7lcqf")
-Goods = Array[Object]([ExtResource("2_35a6u"), ExtResource("3_83781"), ExtResource("4_5eq7y"), ExtResource("5_dcfwp"), ExtResource("6_8em0r")])
+script = ExtResource("1_35a6u")
+Goods = Array[Object]([ExtResource("2_83781"), ExtResource("3_5eq7y"), ExtResource("4_dcfwp"), ExtResource("5_8em0r"), ExtResource("6_f48le")])
