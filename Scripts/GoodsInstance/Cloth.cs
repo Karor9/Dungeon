@@ -1,7 +1,7 @@
 using System;
 using Godot;
 
-public class Cloth
+public partial class Cloth : Resource
 {
     public int[] Slots;
 

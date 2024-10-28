@@ -11,7 +11,7 @@ using Godot;
 //     Mythic
 // }
 
-public class Tool : Good
+public partial class Tool : Good
 {
     public double Durability {get; private set;}
     public byte Quality {get; private set;}

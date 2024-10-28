@@ -1,6 +1,6 @@
 using Godot;
 
-public class Food
+public partial class Food : Resource
 {
     public double Nutrition;
 

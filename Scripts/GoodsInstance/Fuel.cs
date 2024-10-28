@@ -1,6 +1,6 @@
 using Godot;
 
-public class Fuel
+public partial class Fuel : Resource
 {
     [Export] public double EnergyTime;
 
