@@ -1,13 +1,13 @@
 using Godot;
 
 [GlobalClass]
-public partial class Fuel : Resource
+public partial class Fuels : Resource
 {
     [Export] public double EnergyTime;
 
-    public Fuel() : this(0d) {}
+    public Fuels() : this(0d) {}
 
-    public Fuel(double energy)
+    public Fuels(double energy)
     {
         EnergyTime = energy;
     }

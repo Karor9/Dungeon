@@ -1,3 +1,4 @@
+using System;
 using System.Xml.Serialization;
 using Godot;
 // public enum Quality
@@ -10,15 +11,13 @@ using Godot;
 //     Mythic
 // }
 
-public class Tool
+public class Tool : Good
 {
-    public int Id {get; private set;}
     public double Durability {get; private set;}
     public byte Quality {get; private set;}
 
-    public Tool(int id, double durability)
+    public Tool(int id, int amount, DateTime expiration, double durability) : base(id, amount, expiration)
     {
-        Id = id;
         Durability = durability;
         SetupQuality();
     }

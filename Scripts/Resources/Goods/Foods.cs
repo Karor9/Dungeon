@@ -1,13 +1,13 @@
 using Godot;
 
 [GlobalClass]
-public partial class Food : Resource
+public partial class Foods : Resource
 {
     [Export] public double NutritionValue;
 
-    public Food() : this(0d) {}
+    public Foods() : this(0d) {}
 
-    public Food(double nv)
+    public Foods(double nv)
     {
         NutritionValue = nv;
     }

@@ -4,11 +4,11 @@ using System;
 [GlobalClass]
 public partial class Clothes : Resource
 {
-    [Export] public int Slots;
+    [Export] public int[] Slots;
 
-    public Clothes() : this(0) {}
+    public Clothes() : this(new int[] { }) {}
 
-    public Clothes(int s)
+    public Clothes(int[] s)
     {
         Slots = s;
     }
