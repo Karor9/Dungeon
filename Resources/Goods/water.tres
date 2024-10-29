@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Goods" load_steps=5 format=3 uid="uid://dx7ff2y0a6gk5"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/Goods/Foods.cs" id="1_o1xgs"]
+[ext_resource type="Script" path="res://Scripts/Resources/Goods/Goods.cs" id="1_yup2k"]
+[ext_resource type="Texture2D" uid="uid://dmv10fddfkf4a" path="res://Assets/Lic/water.png" id="2_s272o"]
+
+[sub_resource type="Resource" id="Resource_2px6a"]
+script = ExtResource("1_o1xgs")
+NutritionValue = 0.0
+HydrationValue = 100.0
+
+[resource]
+script = ExtResource("1_yup2k")
+Name = "[Water]"
+Icon = ExtResource("2_s272o")
+FoodComponent = SubResource("Resource_2px6a")

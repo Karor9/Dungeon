@@ -1,9 +1,15 @@
-[gd_resource type="Resource" script_class="Goods" load_steps=3 format=3 uid="uid://03i4ujxjukw5"]
+[gd_resource type="Resource" script_class="Goods" load_steps=5 format=3 uid="uid://03i4ujxjukw5"]
 
+[ext_resource type="Script" path="res://Scripts/Resources/Goods/Fuels.cs" id="1_05gku"]
 [ext_resource type="Script" path="res://Scripts/Resources/Goods/Goods.cs" id="1_cpnxg"]
 [ext_resource type="Texture2D" uid="uid://dofdh6366f2ff" path="res://Assets/Lic/logs.png" id="1_nhuf6"]
+
+[sub_resource type="Resource" id="Resource_74dvq"]
+script = ExtResource("1_05gku")
+EnergyTime = 50.0
 
 [resource]
 script = ExtResource("1_cpnxg")
 Name = "[Wood]"
 Icon = ExtResource("1_nhuf6")
+FuelComponent = SubResource("Resource_74dvq")

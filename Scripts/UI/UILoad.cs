@@ -24,12 +24,19 @@ public partial class UILoad : CanvasLayer
         for (int i = 0; i < Globals.Instance.GetGoods().Count; i++)
         {
             Node g = _GoodPanel.Instantiate();
-            Panel good = (Panel)g;
-            RichTextLabel label = good.GetChild(1) as RichTextLabel;
-            double amount = Math.Round(StorageSystem.Instance.GetAmountOfGood(i), 2);
-            label.Text = "[center]" + Globals.Instance.GetGoods()[i].Name + "\n" + amount;
+            Panel panel = (Panel)g;
+            Goods good = goods[i];
 
-            _GoodContainer.AddChild(good);
+            //Sprite
+            TextureRect icon = panel.GetChild(0) as TextureRect;
+            icon.Texture = good.Icon;
+
+            //Text
+            RichTextLabel label = panel.GetChild(1) as RichTextLabel;
+            double amount = Math.Round(StorageSystem.Instance.GetAmountOfGood(i), 2);
+            label.Text = "[center]" + good.Name + "\n" + amount;
+
+            _GoodContainer.AddChild(panel);
         }
     }
 }
