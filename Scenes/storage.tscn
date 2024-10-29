@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dxxvifblxmr12"]
+
+[ext_resource type="Script" path="res://Scripts/StorageSystem.cs" id="1_kgl67"]
+
+[node name="Storage" type="Node"]
+script = ExtResource("1_kgl67")

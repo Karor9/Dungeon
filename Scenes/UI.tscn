@@ -45,6 +45,7 @@ _GoodPanel = ExtResource("2_dewlx")
 _GoodContainer = NodePath("GoodsPanel/ScrollContainer/VBoxContainer")
 
 [node name="GoodsPanel" type="Panel" parent="CanvasLayer"]
+self_modulate = Color(1, 1, 1, 0)
 anchors_preset = -1
 anchor_right = 0.1
 anchor_bottom = 1.0

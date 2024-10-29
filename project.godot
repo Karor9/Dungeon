@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Globals="*res://Scenes/globals.tscn"
+Storage="*res://Scenes/storage.tscn"
 
 [display]
 

@@ -1,11 +1,11 @@
 using System;
 using Godot;
 
-public partial class Cloth : Resource
+public partial class Cloth : Good
 {
-    public int[] Slots;
+    [Export] public int[] Slots;
 
-    public Cloth(int[] slots)
+    public Cloth(int amount,  int[] slots) : base(amount)
     {
         Slots = slots;
     }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Godot;
 using Godot.Collections;
@@ -5,15 +6,14 @@ using Godot.Collections;
 public partial class Globals : Node
 {
 	[Export] Array<Goods> Goods;
-	[Export] Array<Good> Storage = new Array<Good>();
 
 	public static Globals Instance {get; private set;}
+
+	public DateTime Today = new DateTime(1430, 7, 12, 8, 0, 0);
 
 	public override void _Ready()
 	{
 		Instance = this;
-		Storage.Add(new Good(0, 10, null));
-		Storage.Add(new Good(2, 10, new System.DateTime(1400, 12, 12, 12, 12, 12)));
 	}
 
 #nullable enable

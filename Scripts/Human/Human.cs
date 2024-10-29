@@ -7,8 +7,7 @@ public class Human
     public string Name {get; private set;}
     public bool IsMale {get; private set;}
     public DateOnly Birthday {get; private set;}
-    public DateOnly Deathday {get; private set;}
-    public bool IsAlive {get; private set;}
+    public DateOnly? Deathday {get; private set;} = null;
     public double[] JobStats {get; private set;}
     public int[] Stats {get; private set;}
     public byte[] ClassAlign {get; private set;}
@@ -29,6 +28,13 @@ public class Human
         int d = Math.Max(1, day);
         d = Math.Min(DateTime.DaysInMonth(year, m), d);
         Birthday = new DateOnly(year, m, d);
+    }
+
+    public bool IsAlive()
+    {
+        if(Deathday != null)
+            return true;
+        return false;
     }
 
 }

@@ -1,3 +1,4 @@
+using System;
 using Godot;
 using Godot.Collections;
 
@@ -25,7 +26,8 @@ public partial class UILoad : CanvasLayer
             Node g = _GoodPanel.Instantiate();
             Panel good = (Panel)g;
             RichTextLabel label = good.GetChild(1) as RichTextLabel;
-            label.Text = "[center]" + Globals.Instance.GetGoods()[i].Name + "\n0";
+            double amount = Math.Round(StorageSystem.Instance.GetAmountOfGood(i), 2);
+            label.Text = "[center]" + Globals.Instance.GetGoods()[i].Name + "\n" + amount;
 
             _GoodContainer.AddChild(good);
         }

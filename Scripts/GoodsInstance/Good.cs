@@ -3,18 +3,24 @@ using Godot;
 
 public partial class Good : Resource
 {
-    public int Id;
-    public int Amount;
+    [Export] public int Amount;
+    [Export] private string _Expiration; //To be deleted after build
     public DateTime? Expiration;
-    public Food FoodComponent;
-    public Fuel FuelComponent;
+    // [Export] public Food FoodComponent;
+    // [Export] public Fuel FuelComponent;
 
-    public Good(int id, int amount, DateTime? expiration, Food food = null, Fuel fuel = null)
+    public Good(int amount, DateTime? expiration = null)
     {
-        Id = id;
         Amount = amount;
         Expiration = expiration;
-        FoodComponent = food;
-        FuelComponent = fuel;
+        // FoodComponent = food;
+        // FuelComponent = fuel;
+
+        SetupDebug();
+    }
+
+    private void SetupDebug()
+    {
+        _Expiration = Expiration.ToString();
     }
 }

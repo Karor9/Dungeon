@@ -13,17 +13,11 @@ using Godot;
 
 public partial class Tool : Good
 {
-    public double Durability {get; private set;}
-    public byte Quality {get; private set;}
+    [Export] public double Durability {get; private set;}
 
-    public Tool(int id, int amount, DateTime expiration, double durability) : base(id, amount, expiration)
+    public Tool(int amount, DateTime expiration, double durability) : base(amount, expiration)
     {
         Durability = durability;
-        SetupQuality();
     }
 
-    void SetupQuality()
-    {
-        Quality = (byte)GD.RandRange(0, 5);
-    }
 }

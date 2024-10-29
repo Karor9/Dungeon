@@ -6,9 +6,9 @@ public partial class Goods : Resource
 {
     [Export] public string Name {get; set;}
     [Export] public Texture2D Icon {get; set;}
-    [Export] public Fuel FuelComponent {get; set;} = null;
+    [Export] public Fuels FuelComponent {get; set;} = null;
 
-    [Export] public Food FoodComponent {get; set;} = null;
+    [Export] public Foods FoodComponent {get; set;} = null;
 
 
     public Goods() : this("[BlankGoodsName]", null) {}

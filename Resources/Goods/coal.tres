@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="Goods" load_steps=5 format=3 uid="uid://6qqgkpiejskm"]
 
 [ext_resource type="Script" path="res://Scripts/Resources/Goods/Goods.cs" id="1_5gpij"]
-[ext_resource type="Script" path="res://Scripts/Resources/Goods/Fuel.cs" id="1_df3t8"]
+[ext_resource type="Script" path="res://Scripts/Resources/Goods/Fuels.cs" id="1_df3t8"]
 [ext_resource type="Texture2D" uid="uid://dpbjf5un7gah1" path="res://Assets/Lic/coal.png" id="2_0eoge"]
 
-[sub_resource type="Resource" id="Resource_xqu42"]
+[sub_resource type="Resource" id="Resource_0eoge"]
 script = ExtResource("1_df3t8")
 EnergyTime = 1000.0
 
@@ -12,4 +12,4 @@ EnergyTime = 1000.0
 script = ExtResource("1_5gpij")
 Name = "[Coal]"
 Icon = ExtResource("2_0eoge")
-FuelComponent = SubResource("Resource_xqu42")
+FuelComponent = SubResource("Resource_0eoge")
