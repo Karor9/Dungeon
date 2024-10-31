@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.Serialization;
 using Godot;
 
 public partial class Map : TileMapLayer
@@ -8,8 +9,8 @@ public partial class Map : TileMapLayer
     FastNoiseLite altitude = new FastNoiseLite();
 
 
-    int width = 275;
-    int height = 275;
+    int width = 120;
+    int height = 70;
 
     float _WaterLevel = 0f;
     [ExportCategory("Camera")]
@@ -76,7 +77,50 @@ public partial class Map : TileMapLayer
         }
 
         //Set forests
-        bool 
+        float forestPerc = (float)GD.RandRange(0.2, 0.4);
+        int maxTrees =  (int)(land * forestPerc);
+        int _x = 0;
+        int _y = 0;
+        for (int i = 0; i < maxTrees; i++)
+        {
+            _x = GD.RandRange(0, width-1);
+            _y = GD.RandRange(0, height-1);
+
+            if(altitude.GetNoise2D(_x, _y) > _WaterLevel)
+                SetCell(new Vector2I(_x, _y), 0, new Vector2I(2, 1));
+        }
+
+        //Set mountains
+        float mountPerc = (float)GD.RandRange(0.1, 0.3);
+        int maxMountains = (int)(land * mountPerc);
+        _x = GD.RandRange(0, width-1);
+        _y = GD.RandRange(0, height-1);
+        while(altitude.GetNoise2D(_x, _y) < _WaterLevel)
+        {
+            _x = GD.RandRange(0, width-1);
+            _y = GD.RandRange(0, height-1);
+        }
+        while(maxMountains > 0)
+        {
+            if(altitude.GetNoise2D(_x, _y) <= _WaterLevel)
+            {
+                maxMountains--;
+                continue;
+            }
+            
+            maxMountains--;
+            SetCell(new Vector2I(_x, _y), 0, new Vector2I(2, 0));
+            _x += (int)GD.RandRange(-1, 1);
+            _y += (int)GD.RandRange(-1, 1);
+            if(_x < 0)
+                _x = 0;
+            if(_x >= width)
+                _x = width - 1;
+            if(_y < 0)
+                _y = 0;
+            if(_y >= height)
+                _y = height - 1;
+        }
     }
 
     (int, int) CheckWaterMap()
