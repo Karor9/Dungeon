@@ -1,6 +1,3 @@
-using System;
-using System.Linq;
-using System.Runtime.Serialization;
 using Godot;
 
 public partial class Map : TileMapLayer
@@ -21,9 +18,9 @@ public partial class Map : TileMapLayer
     Vector2I screen;
     public override void _Ready()
     {
+        altitude.Frequency = 0.003f;
         SetMap();
         SetupCamera();
-        altitude.Frequency = 0.006f;
     }
 
     void SetMap()
@@ -68,32 +65,16 @@ public partial class Map : TileMapLayer
         //     SetMap();
         // }
         mousePosition = GetViewport().GetMousePosition();
-        if(mousePosition.X <= screen.X / 10 && camera.Position.X > camera.LimitLeft)
+        if(mousePosition.X <= screen.X / 10 && camera.Position.X > camera.LimitLeft && camera.Position.X > screen.X/2)
             camera.Position += new Vector2(-1 * _MoveCamera, 0);
-        if(mousePosition.X >= screen.X - (screen.X / 10) && camera.Position.X < camera.LimitRight)
+        if(mousePosition.X >= screen.X - (screen.X / 10) && camera.Position.X < camera.LimitRight  && camera.Position.X < (width * 16) - screen.X/2)
             camera.Position += new Vector2(_MoveCamera, 0);
-        if(mousePosition.Y <= screen.Y / 10 && camera.Position.Y > camera.LimitTop)
+        if(mousePosition.Y <= screen.Y / 10 && camera.Position.Y > camera.LimitTop && camera.Position.Y > screen.Y/2)
             camera.Position += new Vector2(0, _MoveCamera * -1);
-        if(mousePosition.Y >= screen.Y - (screen.Y / 10) && camera.Position.Y < camera.LimitBottom)
+        if(mousePosition.Y >= screen.Y - (screen.Y / 10) && camera.Position.Y < camera.LimitBottom && camera.Position.Y < (height * 16) - screen.Y/2)
             camera.Position += new Vector2(0, _MoveCamera);
     }
 
-    public override void _Input(InputEvent @event)
-    {
-        switch(@event)
-        {
-            case var _ when @event.IsActionPressed("zoom_in"):
-                camera.Position = GetViewport().GetMousePosition();
-                camera.Zoom = new Vector2(camera.Zoom.X + 0.1f, camera.Zoom.X + 0.1f);
-                break;
-            case var _ when @event.IsActionPressed("zoom_out"):
-                float zoom = camera.Zoom.X;
-                if(zoom - 0.1f <= 0f || 1/zoom * screen.X > camera.LimitRight || 1/zoom * screen.Y > camera.LimitBottom)
-                    return;
-                camera.Zoom = new Vector2(zoom - 0.1f, zoom - 0.1f);
-                break;
-        }
-    }
 
     void SetupCamera()
     {
@@ -101,6 +82,8 @@ public partial class Map : TileMapLayer
         _MoveCamera = _Speed * _CameraMovement;
         camera.LimitRight = 16 * width;
         camera.LimitBottom = 16 * height;
+        camera.Position = new Vector2I(width * 8, height * 8);
+        // camera.Offset = new Vector2I(-1 * screen.X / 2, -1*screen.Y / 2);
     }
 
 
