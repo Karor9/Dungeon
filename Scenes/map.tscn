@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://dwaw4ngjanpnc"]
 
-[ext_resource type="Texture2D" uid="uid://xlcm0t8p57wd" path="res://Assets/Tiles/tiles2.png" id="1_p3ir5"]
+[ext_resource type="Texture2D" uid="uid://dqcp42rn57o8w" path="res://Assets/Tiles/tiles2.png" id="1_p3ir5"]
 [ext_resource type="Script" path="res://Scripts/Map/Map.cs" id="2_myvm1"]
 [ext_resource type="Script" path="res://Scripts/Map/MapCamera.cs" id="3_q0mm3"]
 
