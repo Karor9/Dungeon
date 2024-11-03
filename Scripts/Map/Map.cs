@@ -3,8 +3,7 @@ using Godot;
 
 public partial class Map : TileMapLayer
 {
-    [Export] bool Generate;
-    [Export] FastNoiseLite altitude = new FastNoiseLite();
+    FastNoiseLite altitude = new FastNoiseLite();
     int width = 300;
     int height = 300;
     byte[,] MapArray;
@@ -12,12 +11,25 @@ public partial class Map : TileMapLayer
 
     float _MoveCamera = 0f;
     Vector2 mousePosition;
+
+    [Export] PackedScene _DebugPawn;
+    [Export] Node _DebugPawnsNode;
     public override void _Ready()
     {
         altitude.Frequency = 0.003f;
         MapArray = new byte[width, height];
         SetMap();
+        SetupPawn();
     }
+
+    private void SetupPawn()
+    {
+        Node node = _DebugPawn.Instantiate();
+        Node2D _pawn = node as Node2D;
+        _pawn.Position = new Vector2I(300 * 8, 300 * 8);
+        _DebugPawnsNode.AddChild(_pawn);
+    }
+
 
     void SetMap()
     {
@@ -29,7 +41,7 @@ public partial class Map : TileMapLayer
                 SetCell(x, y);
             }
         }
-        altitude.Free();
+        altitude.Dispose();
     }
 
     void SetCell(int x, int y)

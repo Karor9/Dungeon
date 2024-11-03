@@ -24,13 +24,13 @@ public partial class MapCamera : Camera2D
     public override void _Process(double delta)
     {
         mousePosition = GetViewport().GetMousePosition();
-        if(mousePosition.X <= screen.X / 10 && Position.X > LimitLeft && Position.X > screen.X/2)
+        if(mousePosition.X <= screen.X / 10 && Position.X > LimitLeft && Position.X > screen.X/2 * 1/Zoom.X)
             Position += new Vector2(-1 * _MoveCamera, 0);
-        if(mousePosition.X >= screen.X - (screen.X / 10) && Position.X < LimitRight  && Position.X < (300 * 16) - screen.X/2)
+        if(mousePosition.X >= screen.X - (screen.X / 10) && Position.X < LimitRight  && Position.X < ((300 * 16) - screen.X/2))
             Position += new Vector2(_MoveCamera, 0);
-        if(mousePosition.Y <= screen.Y / 10 && Position.Y > LimitTop && Position.Y > screen.Y/2)
+        if(mousePosition.Y <= screen.Y / 10 && Position.Y > LimitTop && Position.Y > screen.Y/2 * 1/Zoom.Y)
             Position += new Vector2(0, _MoveCamera * -1);
-        if(mousePosition.Y >= screen.Y - (screen.Y / 10) && Position.Y < LimitBottom && Position.Y < (300 * 16) - screen.Y/2)
+        if(mousePosition.Y >= screen.Y - (screen.Y / 10) && Position.Y < LimitBottom && Position.Y < ((300 * 16) - screen.Y/2))
             Position += new Vector2(0, _MoveCamera);
     }
 
@@ -40,9 +40,17 @@ public partial class MapCamera : Camera2D
         Zoom += val;
         Vector2 newMousePos = GetGlobalMousePosition();
         Position += mousePos - newMousePos;
+        if(Position.X < screen.X/2)
+            Position = new Vector2(screen.X/2, Position.Y);
+        if(Position.Y < screen.Y/2)
+            Position = new Vector2(Position.X, screen.Y/2);
+        if(Position.X > (300*16) - screen.X/2)
+            Position = new Vector2((300*16) - screen.X/2, Position.Y);
+        if(Position.Y > (300*16) - screen.Y/2)
+            Position = new Vector2(Position.X, (300*16) - screen.Y/2);
     }
 
-        public override void _Input(InputEvent @event)
+    public override void _Input(InputEvent @event)
     {
         switch(@event)
         {
