@@ -48,10 +48,9 @@ grow_vertical = 2
 
 [node name="Map" type="Node" parent="."]
 
-[node name="TileMapLayer" type="TileMapLayer" parent="Map" node_paths=PackedStringArray("camera")]
+[node name="TileMapLayer" type="TileMapLayer" parent="Map"]
 tile_set = SubResource("TileSet_qwshj")
 script = ExtResource("2_hfhsn")
-camera = NodePath("../Camera2D")
 
 [node name="Camera2D" type="Camera2D" parent="Map"]
 position = Vector2(960, 540)
