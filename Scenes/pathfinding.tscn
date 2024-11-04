@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8qocafjyldss"]
+
+[ext_resource type="Script" path="res://Scripts/Map/Pathfinding.cs" id="1_qquas"]
+
+[node name="Pathfinding" type="Node2D"]
+script = ExtResource("1_qquas")
+start = Vector2i(50, 50)
+end = Vector2i(0, 0)

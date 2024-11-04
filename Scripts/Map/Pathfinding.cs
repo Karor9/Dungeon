@@ -14,14 +14,32 @@ public partial class Pathfinding : Node2D
 
     public override void _Ready()
     {
+        InitPathfinding();
+        GD.Print("Pathfinding Ready");
     }
 
-    public override void _Input(InputEvent @event)
+    public void SetTerrain(TileMapLayer map)    
     {
-        if(@event.IsActionPressed("rmb"))
-            InitPathfinding();
-        if(@event.IsActionPressed("lmb"))
-            FindPath();
+        terrain = map;
+    }
+
+    // public override void _Input(InputEvent @event)
+    // {
+    //     if(@event.IsActionPressed("rmb"))
+    //         InitPathfinding();
+    //     if(@event.IsActionPressed("lmb"))
+    //         FindPath();
+    // }
+
+    public Vector2[] RequestPath(Vector2I s, Vector2I e)
+    {
+        path = astarGrid.GetPointPath(s, e);
+        for (int i = 0; i < path.Length; i++)
+        {
+            path[i] += new Vector2(8, 8);
+        }
+        QueueRedraw();
+        return path;
     }
 
     public override void _Draw()
@@ -47,7 +65,6 @@ public partial class Pathfinding : Node2D
     private void FindPath()
     {
         path = astarGrid.GetPointPath(start, end);
-        GD.Print("Path, ", path.Length);
         QueueRedraw();
     }
 
@@ -71,13 +88,9 @@ public partial class Pathfinding : Node2D
         }
     }
 
-    float GetTerrainDifficulty(Vector2I coords)
+    public float GetTerrainDifficulty(Vector2I coords)
     {
         TileData tileData = terrain.GetCellTileData(coords);
-        // int sourceId = terrain.GetCellSourceId(coords);
-        // TileSetSource source = terrain.TileSet.GetSource(sourceId);
-        // Vector2I atlasCoords = terrain.GetCellAtlasCoords(coords);
-        // TileData tileData = source.GetTileData(atlasCoords, 0);
         float result = (float)tileData.GetCustomData("terrainDifficulty");
 
         return result;

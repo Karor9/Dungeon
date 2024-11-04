@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://u2tiyp2dcq1d"]
+[gd_scene load_steps=6 format=3 uid="uid://u2tiyp2dcq1d"]
 
 [ext_resource type="PackedScene" uid="uid://dwaw4ngjanpnc" path="res://Scenes/map.tscn" id="1_dewlx"]
 [ext_resource type="Script" path="res://Scripts/UI/UILoad.cs" id="1_nxvpl"]
 [ext_resource type="PackedScene" uid="uid://dgxjal52twk6l" path="res://Scenes/good_panel.tscn" id="2_dewlx"]
 [ext_resource type="PackedScene" uid="uid://chisvurmwfuhh" path="res://Scenes/pawn.tscn" id="2_hfhsn"]
+[ext_resource type="PackedScene" uid="uid://c8qocafjyldss" path="res://Scenes/pathfinding.tscn" id="3_qwshj"]
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -18,8 +19,9 @@ grow_vertical = 2
 [node name="TileMapLayer" parent="Map" index="0" node_paths=PackedStringArray("_DebugPawnsNode")]
 _DebugPawn = ExtResource("2_hfhsn")
 _DebugPawnsNode = NodePath("../../Players")
+PathfindingScene = ExtResource("3_qwshj")
 
-[node name="Players" type="Node" parent="."]
+[node name="Players" type="Node2D" parent="."]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("_GoodContainer")]
 visible = false

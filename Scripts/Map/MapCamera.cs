@@ -10,7 +10,7 @@ public partial class MapCamera : Camera2D
     public override void _Ready()
     {
         SetupCamera();
-        GD.Print("testup");
+        GD.Print("Camera Ready");
     }
     void SetupCamera()
     {
@@ -18,7 +18,7 @@ public partial class MapCamera : Camera2D
         _MoveCamera = _Speed * _CameraMovement;
         LimitRight = 16 * 300;
         LimitBottom = 16 * 300;
-        Position = new Vector2I(300 * 8, 300 * 8);
+        // Position = new Vector2I(300 * 8, 300 * 8);
     }
 
     public override void _Process(double delta)

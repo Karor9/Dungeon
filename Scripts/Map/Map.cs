@@ -14,20 +14,37 @@ public partial class Map : TileMapLayer
 
     [Export] PackedScene _DebugPawn;
     [Export] Node _DebugPawnsNode;
+    [Export] PackedScene PathfindingScene;
+    Pathfinding Pathfinding;
     public override void _Ready()
     {
         altitude.Frequency = 0.003f;
         MapArray = new byte[width, height];
         SetMap();
+        GD.Print("Map Ready");
+        SetupPathfinding();
         SetupPawn();
     }
 
     private void SetupPawn()
     {
         Node node = _DebugPawn.Instantiate();
-        Node2D _pawn = node as Node2D;
-        _pawn.Position = new Vector2I(300 * 8, 300 * 8);
-        _DebugPawnsNode.AddChild(_pawn);
+        MovablePawn _pawn = node as MovablePawn;
+        _pawn.Position = new Vector2I(8 ,8);
+        _pawn.terrain = this;
+        _pawn.pathfinding = Pathfinding;
+        _DebugPawnsNode.CallDeferred("add_child", _pawn);
+    }
+
+    void SetupPathfinding()
+    {
+        Node node = PathfindingScene.Instantiate();
+        Pathfinding path = (Pathfinding)node;
+        path.SetTerrain((TileMapLayer)this);
+        Pathfinding = path;
+        Node parent = GetParent();
+        parent.CallDeferred("add_child", path);
+        // parent.AddChild(path);
     }
 
 
