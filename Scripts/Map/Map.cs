@@ -4,9 +4,10 @@ using Godot;
 public partial class Map : TileMapLayer
 {
     FastNoiseLite altitude = new FastNoiseLite();
+    FastNoiseLite forest = new FastNoiseLite();
+
     int width = 300;
     int height = 300;
-    byte[,] MapArray;
     float _WaterLevel = 0f;
 
     float _MoveCamera = 0f;
@@ -19,7 +20,6 @@ public partial class Map : TileMapLayer
     public override void _Ready()
     {
         altitude.Frequency = 0.003f;
-        MapArray = new byte[width, height];
         SetMap();
         GD.Print("Map Ready");
         SetupPathfinding();
@@ -40,11 +40,10 @@ public partial class Map : TileMapLayer
     {
         Node node = PathfindingScene.Instantiate();
         Pathfinding path = (Pathfinding)node;
-        path.SetTerrain((TileMapLayer)this);
+        path.SetTerrain((TileMapLayer)this, 300, 300, new Vector2(16, 16));
         Pathfinding = path;
         Node parent = GetParent();
         parent.CallDeferred("add_child", path);
-        // parent.AddChild(path);
     }
 
 
@@ -67,11 +66,9 @@ public partial class Map : TileMapLayer
         {
             case float z when z >= 0.625f:
                 SetCell(new Vector2I(x, y), 0, new Vector2I(2, 0));
-                MapArray[x, y] = 2;
                 return;
             case float z when z <= _WaterLevel:
                 SetCell(new Vector2I(x, y), 0, new Vector2I(3, 3));
-                MapArray[x, y] = 15;
                 return;
             case float z when z > _WaterLevel && z < 0.0425:
                 SetCell(new Vector2I(x, y), 0, new Vector2I(0, 2));
@@ -87,10 +84,8 @@ public partial class Map : TileMapLayer
         if(GD.Randf() < 0.25)
         {
             SetCell(new Vector2I(x, y), 0, new Vector2I(2, 1));
-            MapArray[x, y] = 6;
             return;
         }
         SetCell(new Vector2I(x, y), 0, new Vector2I(1, 2));
-        MapArray[x, y] = 9;
     }
 }

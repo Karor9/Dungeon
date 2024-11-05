@@ -1,16 +1,20 @@
 using Godot;
-using Godot.Collections;
-using System;
-[Tool]
+// [Tool]
 public partial class Pathfinding : Node2D
 {
     [Export] TileMapLayer terrain;
+    int width;
+    int height;
+    Vector2 cellSize;
+
+
     AStarGrid2D astarGrid = new AStarGrid2D();
     Vector2[] path = {};
 
+
     [Export] bool calculate;
-    [Export] Vector2I start = new Vector2I(0, 0);
-    [Export] Vector2I end = new Vector2I(50, 50);
+    [Export] Vector2I start;
+    [Export] Vector2I end;
 
     public override void _Ready()
     {
@@ -18,25 +22,20 @@ public partial class Pathfinding : Node2D
         GD.Print("Pathfinding Ready");
     }
 
-    public void SetTerrain(TileMapLayer map)    
+    public void SetTerrain(TileMapLayer map, int w, int h, Vector2 cs)    
     {
         terrain = map;
+        width = w;
+        height = h;
+        cellSize = cs;
     }
-
-    // public override void _Input(InputEvent @event)
-    // {
-    //     if(@event.IsActionPressed("rmb"))
-    //         InitPathfinding();
-    //     if(@event.IsActionPressed("lmb"))
-    //         FindPath();
-    // }
 
     public Vector2[] RequestPath(Vector2I s, Vector2I e)
     {
         path = astarGrid.GetPointPath(s, e);
         for (int i = 0; i < path.Length; i++)
         {
-            path[i] += new Vector2(8, 8);
+            path[i] += cellSize/2;
         }
         QueueRedraw();
         return path;
@@ -71,13 +70,13 @@ public partial class Pathfinding : Node2D
 
     void InitPathfinding()
     {
-        astarGrid.Region = new Rect2I(0, 0, 300, 300);
-        astarGrid.CellSize = new Vector2(16, 16);
+        astarGrid.Region = new Rect2I(0, 0, width, height);
+        astarGrid.CellSize = cellSize;
         astarGrid.DiagonalMode = AStarGrid2D.DiagonalModeEnum.OnlyIfNoObstacles;   
         astarGrid.Update();
-        for (int x = 0; x < 300; x++)
+        for (int x = 0; x < width; x++)
         {
-            for (int y = 0; y < 300; y++)
+            for (int y = 0; y < height; y++)
             {
                 float diff = GetTerrainDifficulty(new Vector2I(x, y));
                 if(diff > 0.2f)
