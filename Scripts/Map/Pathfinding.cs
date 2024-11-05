@@ -1,3 +1,4 @@
+using System.Linq;
 using Godot;
 // [Tool]
 public partial class Pathfinding : Node2D
@@ -37,6 +38,32 @@ public partial class Pathfinding : Node2D
         {
             path[i] += cellSize/2;
         }
+        // QueueRedraw();
+        return path;
+    }
+
+    public Vector2[] RequestSomePath(Vector2I s, Vector2I e)
+    {
+        Vector2[] p = astarGrid.GetPointPath(s, e);
+        for (int i = 0; i < p.Length; i++)
+        {
+            p[i] += cellSize/2;
+        }
+        // QueueRedraw();
+        return p;
+    }
+
+    public Vector2[] RequestAdditionalPath(Vector2I s, Vector2I e, Vector2[] p)
+    {
+        int oldPathLength = p.Length;
+        Vector2[] addPath = astarGrid.GetPointPath(s, e);
+        if(addPath.Length == 0)
+            return path;
+        path = p.Concat(addPath).ToArray();
+        for (int i = oldPathLength; i < path.Length; i++)
+        {
+            path[i] += cellSize/2;
+        }
         QueueRedraw();
         return path;
     }
@@ -50,6 +77,12 @@ public partial class Pathfinding : Node2D
                 DrawLine(path[i], path[i+1], Colors.Red);
             }
         }
+    }
+
+    public void Redraw(Vector2[] p)
+    {
+        path = p;
+        QueueRedraw();
     }
 
     public override void _Process(double delta)

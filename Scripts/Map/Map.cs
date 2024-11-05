@@ -4,7 +4,7 @@ using Godot;
 public partial class Map : TileMapLayer
 {
     FastNoiseLite altitude = new FastNoiseLite();
-    [Export] FastNoiseLite forest = new FastNoiseLite();
+    FastNoiseLite forest = new FastNoiseLite();
 
     int width = 300;
     int height = 300;
