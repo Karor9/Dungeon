@@ -4,7 +4,7 @@ using Godot;
 public partial class Map : TileMapLayer
 {
     FastNoiseLite altitude = new FastNoiseLite();
-    FastNoiseLite forest = new FastNoiseLite();
+    [Export] FastNoiseLite forest = new FastNoiseLite();
 
     int width = 300;
     int height = 300;
@@ -19,7 +19,6 @@ public partial class Map : TileMapLayer
     Pathfinding Pathfinding;
     public override void _Ready()
     {
-        altitude.Frequency = 0.003f;
         SetMap();
         GD.Print("Map Ready");
         SetupPathfinding();
@@ -49,7 +48,10 @@ public partial class Map : TileMapLayer
 
     void SetMap()
     {
-        altitude.Seed = (int)GD.Randi();
+        altitude.Frequency = 0.003f;
+        SetupForest();
+        altitude.Seed = 4;
+        // altitude.Seed = (int)GD.Randi();
         for (int x = 0; x < width; x++)
         {
             for (int y = 0; y < height; y++)
@@ -58,7 +60,19 @@ public partial class Map : TileMapLayer
             }
         }
         altitude.Dispose();
+        forest.Dispose();
     }
+
+    private void SetupForest()
+    {
+        forest.Seed = 4;
+        // forest.Seed = (int)GD.Randi();
+        forest.NoiseType = FastNoiseLite.NoiseTypeEnum.Cellular;
+        forest.Frequency = 1f;
+        forest.CellularDistanceFunction = FastNoiseLite.CellularDistanceFunctionEnum.Hybrid;
+        forest.CellularReturnType = FastNoiseLite.CellularReturnTypeEnum.CellValue;
+    }
+
 
     void SetCell(int x, int y)
     {
@@ -81,7 +95,8 @@ public partial class Map : TileMapLayer
 
     private void SetGround(int x, int y)
     {
-        if(GD.Randf() < 0.25)
+        float val = forest.GetNoise2D(x, y);
+        if(val < 0.25f && val > 0f)
         {
             SetCell(new Vector2I(x, y), 0, new Vector2I(2, 1));
             return;
