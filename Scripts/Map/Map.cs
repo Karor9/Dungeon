@@ -17,13 +17,27 @@ public partial class Map : TileMapLayer
     [Export] Node _DebugPawnsNode;
     [Export] PackedScene PathfindingScene;
     Pathfinding Pathfinding;
+
+    // [Export] PackedScene item;
     public override void _Ready()
     {
         SetMap();
         GD.Print("Map Ready");
         SetupPathfinding();
         SetupPawn();
+        // SetupItems();
     }
+
+    // void SetupItems()
+    // {
+    //     for (int i = 0; i < 10000; i++)
+    //     {
+    //         Node n = item.Instantiate();
+    //         Node2D node2D = n as Node2D;
+    //         node2D.Position = new Vector2(24, 24);
+    //         AddChild(node2D);
+    //     }
+    // }
 
     private void SetupPawn()
     {

@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://dxxvifblxmr12"]
+[gd_scene load_steps=3 format=3 uid="uid://dxxvifblxmr12"]
 
 [ext_resource type="Script" path="res://Scripts/StorageSystem.cs" id="1_kgl67"]
+[ext_resource type="PackedScene" uid="uid://j4q012iw22gp" path="res://Scenes/good_scene.tscn" id="2_j3ewu"]
 
 [node name="Storage" type="Node"]
 script = ExtResource("1_kgl67")
+ItemScene = ExtResource("2_j3ewu")

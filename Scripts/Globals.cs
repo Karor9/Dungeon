@@ -5,7 +5,7 @@ using Godot.Collections;
 
 public partial class Globals : Node
 {
-	[Export] Array<Goods>	 Goods;
+	[Export] Array<Goods> Goods;
 
 	public static Globals Instance {get; private set;}
 
@@ -20,6 +20,11 @@ public partial class Globals : Node
 	public Array<Goods>? GetGoods()
 	{
 		return Goods;
+	}
+
+	public Goods GetGood(int id)
+	{
+		return Goods[id];
 	}
 #nullable disable
 }

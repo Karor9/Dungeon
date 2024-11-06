@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://j4q012iw22gp"]
+
+[ext_resource type="Texture2D" uid="uid://cb8cdgkv56i2r" path="res://Assets/Lic/axe.png" id="1_gxtie"]
+
+[node name="GoodScene" type="Node2D"]
+
+[node name="Icon" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(8, 8)
+scale = Vector2(0.125, 0.125)
+texture = ExtResource("1_gxtie")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+z_index = 2
+anchors_preset = -1
+anchor_bottom = 1.0
+offset_left = 9.0
+offset_top = 7.0
+offset_right = 25.0
+offset_bottom = 15.0
+theme_override_font_sizes/normal_font_size = 6
+bbcode_enabled = true
+text = "10
+"
+scroll_active = false
+autowrap_mode = 0

@@ -15,7 +15,7 @@ public partial class Tool : Good
 {
     [Export] public double Durability {get; private set;}
 
-    public Tool(int amount, DateTime expiration, double durability) : base(amount, expiration)
+    public Tool(int amount, Vector2 position, DateTime expiration, double durability) : base(amount, position, expiration)
     {
         Durability = durability;
     }
