@@ -15,6 +15,7 @@ public partial class StorageSystem : Node
 
         
 		AddToStorage(0, new Good(35, new Vector2(1, 0)));
+        AddToStorage(1, new Good(1, new Vector2(2, 0)));
 		// AddToStorage(0, new Good(25));
 		// AddToStorage(1, new Good(5));
         // AddToStorage(3, new Good(25, 
@@ -28,9 +29,19 @@ public partial class StorageSystem : Node
         Storage[key].Add(good);
         Node node = ItemScene.Instantiate();
         Node2D node2D = node as Node2D;
+
+        //Sprite
         Sprite2D sprite = node2D.GetChild(0) as Sprite2D;
         sprite.Texture = Globals.Instance.GetGood(key).Icon;
+
+        //Position
         node2D.Position = good.Position * 16;
+
+        //Text
+        RichTextLabel amount = node2D.GetChild(1) as RichTextLabel;
+        if(good.Amount > 1)
+            amount.Text = "[right]" + good.Amount.ToString();
+
         AddChild(node2D);
     }
 
