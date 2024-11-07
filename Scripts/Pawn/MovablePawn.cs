@@ -13,7 +13,7 @@ public partial class MovablePawn : CharacterBody2D
 
     public override void _PhysicsProcess(double delta)
     {
-        if(Input.IsActionJustPressed("left_mouse_click") && !Input.IsActionJustPressed("append_path"))
+        if(Input.IsActionJustPressed("RightMouseClick") && !Input.IsActionJustPressed("append_path"))
         {
             SinglePath();
             if(path.Length == 0)

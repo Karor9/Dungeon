@@ -38,9 +38,12 @@ public partial class StorageSystem : Node
         node2D.Position = good.Position * 16;
 
         //Text
-        RichTextLabel amount = node2D.GetChild(1) as RichTextLabel;
+        RichTextLabel amount = node2D.GetChild(2) as RichTextLabel;
         if(good.Amount > 1)
             amount.Text = "[right]" + good.Amount.ToString();
+
+        //Name
+        node2D.Name = key.ToString() + "_" + node2D.Position.ToString();
 
         AddChild(node2D);
     }
