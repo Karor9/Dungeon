@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using Godot;
 using Godot.Collections;
 
@@ -10,6 +9,9 @@ public partial class Globals : Node
 	public static Globals Instance {get; private set;}
 
 	public DateTime Today = new DateTime(1430, 7, 12, 8, 0, 0);
+
+	public int ItemClicked = -1;
+	public Dictionary<int, MovablePawn> ActivePawns = new Dictionary<int, MovablePawn>();
 
 	public override void _Ready()
 	{
@@ -27,4 +29,9 @@ public partial class Globals : Node
 		return Goods[id];
 	}
 #nullable disable
+
+	public int RegisterPawn(MovablePawn pawn)
+	{
+		ActiveP
+	}
 }

@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Linq;
 using Godot;
 
@@ -8,24 +9,40 @@ public partial class MovablePawn : CharacterBody2D
 
     [Export] public Pathfinding pathfinding;
     [Export] public Map terrain;
+    bool Active = false;
 
     Vector2[] path = {};
+    public Panel ItemContextPanel;
 
     public override void _PhysicsProcess(double delta)
     {
-        if(Input.IsActionJustPressed("RightMouseClick") && !Input.IsActionJustPressed("append_path"))
+        // if(Input.IsActionJustPressed("LeftMouseClick"))
+        // {
+        // }
+
+        if(Input.IsActionJustPressed("RightMouseClick") && !Input.IsActionJustPressed("append_path") && Active)
+        {
+            // GD.Print((Vector2I)(GetGlobalMousePosition()/ terrain.RenderingQuadrantSize));
+            // GD.Print(Globals.Instance.ItemClicked);
+            if(Globals.Instance.ItemClicked > -1)
+            {
+                ContextClick();
+            } else if(Active)
+            {
+                ItemContextPanel.Visible = false;
+                SinglePath();
+                if(path.Length == 0)
+                    ObstacleClick();
+            }
+            
+        }
+        if(path.Length == 0 && Input.IsActionJustPressed("append_path") && Active)
         {
             SinglePath();
             if(path.Length == 0)
                 ObstacleClick();
         }
-        if(path.Length == 0 && Input.IsActionJustPressed("append_path"))
-        {
-            SinglePath();
-            if(path.Length == 0)
-                ObstacleClick();
-        }
-        if(Input.IsActionJustPressed("append_path") && path.Length > 0)
+        if(Input.IsActionJustPressed("append_path") && path.Length > 0 && Active)
         {
             int pathLength = path.Length;
             AdditionalPath();
@@ -58,6 +75,15 @@ public partial class MovablePawn : CharacterBody2D
         }
         MoveAndSlide();
     }
+
+    private void ContextClick()
+    {
+        ItemContextPanel.Visible = true;
+        ItemContextPanel.Position = GetViewport().GetMousePosition();
+
+        Globals.Instance.ItemClicked = -1;
+    }
+
 
     public override void _Ready()
     {
@@ -124,5 +150,15 @@ public partial class MovablePawn : CharacterBody2D
         }
         if(minInd != -1)
             path = pathfinding.RequestAdditionalPath((Vector2I)pos, (Vector2I)(obstacle + offsets[minInd]), path);
+    }
+
+    public void InputPress(Viewport viewport, InputEvent @event, int shapeIdx)
+    {
+        if(@event is InputEventMouseButton button && button.ButtonIndex == MouseButton.Left && @event.IsPressed())
+        {
+            Active = true;
+            Sprite2D sprite = GetChild(0) as Sprite2D;
+            sprite.Modulate = Colors.Red;
+        }
     }
 }

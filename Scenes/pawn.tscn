@@ -9,8 +9,9 @@ radius = 7.5
 [node name="Pawn" type="CharacterBody2D"]
 top_level = true
 z_index = 10
-collision_layer = 0
+collision_layer = 256
 collision_mask = 7
+input_pickable = true
 motion_mode = 1
 script = ExtResource("1_3865y")
 
@@ -23,3 +24,5 @@ visible = false
 scale = Vector2(0.95, 0.95)
 shape = SubResource("CircleShape2D_3865y")
 debug_color = Color(0.992157, 0, 0.254902, 0.356863)
+
+[connection signal="input_event" from="." to="." method="InputPress"]

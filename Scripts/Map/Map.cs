@@ -16,6 +16,7 @@ public partial class Map : TileMapLayer
     [Export] PackedScene _DebugPawn;
     [Export] Node _DebugPawnsNode;
     [Export] PackedScene PathfindingScene;
+    [Export] Panel ItemContextMenu;
     Pathfinding Pathfinding;
 
     // [Export] PackedScene item;
@@ -46,6 +47,7 @@ public partial class Map : TileMapLayer
         _pawn.Position = new Vector2I(8 ,8);
         _pawn.terrain = this;
         _pawn.pathfinding = Pathfinding;
+        _pawn.ItemContextPanel = ItemContextMenu;
         _DebugPawnsNode.CallDeferred("add_child", _pawn);
     }
 
