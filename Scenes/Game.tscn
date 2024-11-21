@@ -1,10 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://u2tiyp2dcq1d"]
+[gd_scene load_steps=12 format=3 uid="uid://u2tiyp2dcq1d"]
 
 [ext_resource type="Texture2D" uid="uid://dqcp42rn57o8w" path="res://Assets/Tiles/tiles2.png" id="1_b2bpf"]
+[ext_resource type="Script" path="res://Scripts/GameManager.cs" id="1_bf53h"]
 [ext_resource type="Script" path="res://Scripts/Map/Map.cs" id="2_7lihs"]
 [ext_resource type="PackedScene" uid="uid://chisvurmwfuhh" path="res://Scenes/pawn.tscn" id="3_fgofq"]
 [ext_resource type="PackedScene" uid="uid://c8qocafjyldss" path="res://Scenes/pathfinding.tscn" id="4_2irst"]
 [ext_resource type="Script" path="res://Scripts/Map/MapCamera.cs" id="5_bf53h"]
+[ext_resource type="Script" path="res://Scripts/Pawn/PawnManager.cs" id="6_2irst"]
 [ext_resource type="Script" path="res://Scripts/UI/UILoad.cs" id="6_fgofq"]
 [ext_resource type="PackedScene" uid="uid://dgxjal52twk6l" path="res://Scenes/good_panel.tscn" id="7_2irst"]
 
@@ -51,27 +53,35 @@ custom_data_layer_0/name = "terrainDifficulty"
 custom_data_layer_0/type = 3
 sources/0 = SubResource("TileSetAtlasSource_hfhsn")
 
-[node name="Game" type="Node"]
+[node name="Game" type="Node" node_paths=PackedStringArray("map", "mapCamera", "pawnManager")]
+script = ExtResource("1_bf53h")
+map = NodePath("Map/Ground")
+mapCamera = NodePath("Map/MapCamera")
+pathfindingScene = ExtResource("4_2irst")
+pawnManager = NodePath("Players")
 
 [node name="Map" type="Node" parent="."]
 
-[node name="Ground" type="TileMapLayer" parent="Map" node_paths=PackedStringArray("_DebugPawnsNode", "ItemContextMenu")]
+[node name="Ground" type="TileMapLayer" parent="Map" node_paths=PackedStringArray("pawnManager")]
 tile_set = SubResource("TileSet_qwshj")
 script = ExtResource("2_7lihs")
-_DebugPawn = ExtResource("3_fgofq")
-_DebugPawnsNode = NodePath("../../Players")
 PathfindingScene = ExtResource("4_2irst")
-ItemContextMenu = NodePath("../../CanvasLayer/ItemContextPanel")
+pawnManager = NodePath("../../Players")
 
 [node name="Items" type="Node2D" parent="Map"]
 
-[node name="Camera2D" type="Camera2D" parent="Map"]
+[node name="MapCamera" type="Camera2D" parent="Map"]
 position = Vector2(960, 540)
 limit_left = 0
 limit_top = 0
 script = ExtResource("5_bf53h")
 
-[node name="Players" type="Node2D" parent="."]
+[node name="Players" type="Node2D" parent="." node_paths=PackedStringArray("ItemContextPanel", "Map", "PawnsNode")]
+script = ExtResource("6_2irst")
+Pawn = ExtResource("3_fgofq")
+ItemContextPanel = NodePath("../CanvasLayer/ItemContextPanel")
+Map = NodePath("../Map/Ground")
+PawnsNode = NodePath(".")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("_GoodContainer")]
 script = ExtResource("6_fgofq")

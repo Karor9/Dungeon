@@ -9,10 +9,10 @@ public partial class MapCamera : Camera2D
     Vector2 mousePosition;
     public override void _Ready()
     {
-        SetupCamera();
-        GD.Print("Camera Ready");
+        // SetupCamera();
+        // GD.Print("Camera Ready");
     }
-    void SetupCamera()
+    public void SetupCamera()
     {
         screen = DisplayServer.ScreenGetSize();
         _MoveCamera = _Speed * _CameraMovement;

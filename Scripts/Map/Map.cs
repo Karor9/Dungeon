@@ -12,21 +12,22 @@ public partial class Map : TileMapLayer
 
     float _MoveCamera = 0f;
     Vector2 mousePosition;
-
-    [Export] PackedScene _DebugPawn;
-    [Export] Node _DebugPawnsNode;
     [Export] PackedScene PathfindingScene;
-    [Export] Panel ItemContextMenu;
-    Pathfinding Pathfinding;
+    [Export] PawnManager pawnManager;
 
     // [Export] PackedScene item;
     public override void _Ready()
     {
-        SetMap();
-        GD.Print("Map Ready");
-        SetupPathfinding();
-        SetupPawn();
+        // SetMap();
+        // SetupPathfinding();
+        // SetupPawn();
+        
         // SetupItems();
+    }
+
+    void SetupPawn()
+    {
+        pawnManager.SpawnPawn(new Vector2(8, 8));
     }
 
     // void SetupItems()
@@ -40,29 +41,32 @@ public partial class Map : TileMapLayer
     //     }
     // }
 
-    private void SetupPawn()
-    {
-        Node node = _DebugPawn.Instantiate();
-        MovablePawn _pawn = node as MovablePawn;
-        _pawn.Position = new Vector2I(8 ,8);
-        _pawn.terrain = this;
-        _pawn.pathfinding = Pathfinding;
-        _pawn.ItemContextPanel = ItemContextMenu;
-        _DebugPawnsNode.CallDeferred("add_child", _pawn);
-    }
+    // private void SetupPawn()
+    // {
+    //     Node node = _DebugPawn.Instantiate();
+    //     MovablePawn _pawn = node as MovablePawn;
+    //     _pawn.Position = new Vector2I(8 ,8);
+    //     _pawn.terrain = this;
+    //     _pawn.pathfinding = Pathfinding;
+    //     _pawn.ItemContextPanel = ItemContextMenu;
+    //     _pawn.Name = "0";
+    //     _DebugPawnsNode.CallDeferred("add_child", _pawn);
+    // }
 
-    void SetupPathfinding()
-    {
-        Node node = PathfindingScene.Instantiate();
-        Pathfinding path = (Pathfinding)node;
-        path.SetTerrain((TileMapLayer)this, 300, 300, new Vector2(16, 16));
-        Pathfinding = path;
-        Node parent = GetParent();
-        parent.CallDeferred("add_child", path);
-    }
+    // void SetupPathfinding()
+    // {
+    //     Node node = PathfindingScene.Instantiate();
+    //     Pathfinding path = (Pathfinding)node;
+    //     path.SetTerrain((TileMapLayer)this, 300, 300, new Vector2(16, 16));
+    //     Node parent = GetParent();
+        
+    //     pawnManager.Pathfinding = path;
+    //     parent.CallDeferred("add_child", path);
+        
+    // }
 
 
-    void SetMap()
+    public void SetMap()
     {
         altitude.Frequency = 0.003f;
         SetupForest();

@@ -84,12 +84,6 @@ public partial class MovablePawn : CharacterBody2D
         Globals.Instance.ItemClicked = -1;
     }
 
-
-    public override void _Ready()
-    {
-        GD.Print("Pawn Ready");
-    }
-
     void SinglePath()
     {
         Vector2 pos = Position / terrain.RenderingQuadrantSize;
