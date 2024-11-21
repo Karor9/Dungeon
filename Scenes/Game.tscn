@@ -22,24 +22,31 @@ texture = ExtResource("1_b2bpf")
 1:1/0 = 0
 1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:1/0/custom_data_0 = 0.2
+1:1/0/custom_data_1 = true
 2:1/0 = 0
 2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 2:1/0/custom_data_0 = 0.2
+2:1/0/custom_data_1 = true
 3:1/0 = 0
 3:1/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 0:2/0 = 0
 0:2/0/custom_data_0 = 2.0
+0:2/0/custom_data_1 = true
 1:2/0 = 0
 1:2/0/custom_data_0 = 1.0
+1:2/0/custom_data_1 = true
 2:2/0 = 0
 2:2/0/custom_data_0 = 1.0
+2:2/0/custom_data_1 = true
 3:2/0 = 0
 3:2/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 0:3/0 = 0
 1:3/0 = 0
 1:3/0/custom_data_0 = 2.0
+1:3/0/custom_data_1 = true
 2:3/0 = 0
 2:3/0/custom_data_0 = 0.8
+2:3/0/custom_data_1 = true
 3:3/0 = 0
 3:3/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 3:3/0/custom_data_0 = 0.1
@@ -51,6 +58,8 @@ physics_layer_1/collision_layer = 6
 physics_layer_1/collision_mask = 6
 custom_data_layer_0/name = "terrainDifficulty"
 custom_data_layer_0/type = 3
+custom_data_layer_1/name = "SpawnableTerrain"
+custom_data_layer_1/type = 1
 sources/0 = SubResource("TileSetAtlasSource_hfhsn")
 
 [node name="Game" type="Node" node_paths=PackedStringArray("map", "mapCamera", "pawnManager")]
@@ -62,11 +71,9 @@ pawnManager = NodePath("Players")
 
 [node name="Map" type="Node" parent="."]
 
-[node name="Ground" type="TileMapLayer" parent="Map" node_paths=PackedStringArray("pawnManager")]
+[node name="Ground" type="TileMapLayer" parent="Map"]
 tile_set = SubResource("TileSet_qwshj")
 script = ExtResource("2_7lihs")
-PathfindingScene = ExtResource("4_2irst")
-pawnManager = NodePath("../../Players")
 
 [node name="Items" type="Node2D" parent="Map"]
 

@@ -11,60 +11,6 @@ public partial class Map : TileMapLayer
     float _WaterLevel = 0f;
 
     float _MoveCamera = 0f;
-    Vector2 mousePosition;
-    [Export] PackedScene PathfindingScene;
-    [Export] PawnManager pawnManager;
-
-    // [Export] PackedScene item;
-    public override void _Ready()
-    {
-        // SetMap();
-        // SetupPathfinding();
-        // SetupPawn();
-        
-        // SetupItems();
-    }
-
-    void SetupPawn()
-    {
-        pawnManager.SpawnPawn(new Vector2(8, 8));
-    }
-
-    // void SetupItems()
-    // {
-    //     for (int i = 0; i < 10000; i++)
-    //     {
-    //         Node n = item.Instantiate();
-    //         Node2D node2D = n as Node2D;
-    //         node2D.Position = new Vector2(24, 24);
-    //         AddChild(node2D);
-    //     }
-    // }
-
-    // private void SetupPawn()
-    // {
-    //     Node node = _DebugPawn.Instantiate();
-    //     MovablePawn _pawn = node as MovablePawn;
-    //     _pawn.Position = new Vector2I(8 ,8);
-    //     _pawn.terrain = this;
-    //     _pawn.pathfinding = Pathfinding;
-    //     _pawn.ItemContextPanel = ItemContextMenu;
-    //     _pawn.Name = "0";
-    //     _DebugPawnsNode.CallDeferred("add_child", _pawn);
-    // }
-
-    // void SetupPathfinding()
-    // {
-    //     Node node = PathfindingScene.Instantiate();
-    //     Pathfinding path = (Pathfinding)node;
-    //     path.SetTerrain((TileMapLayer)this, 300, 300, new Vector2(16, 16));
-    //     Node parent = GetParent();
-        
-    //     pawnManager.Pathfinding = path;
-    //     parent.CallDeferred("add_child", path);
-        
-    // }
-
 
     public void SetMap()
     {

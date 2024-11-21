@@ -9,7 +9,7 @@ public partial class MovablePawn : CharacterBody2D
 
     [Export] public Pathfinding pathfinding;
     [Export] public Map terrain;
-    bool Active = false;
+    public bool Active = false;
 
     Vector2[] path = {};
     public Panel ItemContextPanel;
@@ -150,9 +150,8 @@ public partial class MovablePawn : CharacterBody2D
     {
         if(@event is InputEventMouseButton button && button.ButtonIndex == MouseButton.Left && @event.IsPressed())
         {
-            Active = true;
-            Sprite2D sprite = GetChild(0) as Sprite2D;
-            sprite.Modulate = Colors.Red;
+            Globals.Instance.DeregisterPawns(int.Parse(Name));
+            Globals.Instance.RegisterPawn(int.Parse(Name), this);
         }
     }
 }

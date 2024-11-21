@@ -21,8 +21,10 @@ public partial class GameManager : Node
         //Pathfinding Init
         SetupPathfinding();
 
-        //Pawn init
-        pawnManager.SpawnPawn(new Vector2(8 ,8));
+        // //Pawn init
+        pawnManager.SetupPawns();
+        GD.Print("Pawns Ready");
+        // pawnManager.SpawnPawn(new Vector2(8 ,8));
         
     }
 
@@ -34,7 +36,7 @@ public partial class GameManager : Node
         pathfinding.SetTerrain(map, 300, 300, new Vector2(16, 16));
         Node parent = GetChild(0);
         pawnManager.Pathfinding = pathfinding;
-        parent.CallDeferred("add_child", pathfinding);
+        parent.AddChild(pathfinding);
         
     }
 }

@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://bempyne02ddij"]
+
+[ext_resource type="Script" path="res://Scripts/GameStartup.cs" id="1_fq884"]
+[ext_resource type="PackedScene" uid="uid://u2tiyp2dcq1d" path="res://Scenes/Game.tscn" id="2_h1d17"]
+
+[node name="GameStartup" type="Node"]
+script = ExtResource("1_fq884")
+GameScene = ExtResource("2_h1d17")

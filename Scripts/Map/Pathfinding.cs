@@ -128,4 +128,10 @@ public partial class Pathfinding : Node2D
         return result;
     }
 
+    public bool GetSpawnable(Vector2I coords)
+    {
+        TileData tileData = terrain.GetCellTileData(coords);
+        return (bool)tileData.GetCustomData("SpawnableTerrain");
+    }
+
 }
