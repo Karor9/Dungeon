@@ -13,7 +13,7 @@ config_version=5
 config/name="Dungeon"
 config/tags=PackedStringArray("dungeon")
 run/main_scene="res://Scenes/game_startup.tscn"
-config/features=PackedStringArray("4.4", "C#", "Forward Plus")
+config/features=PackedStringArray("4.3", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
@@ -34,7 +34,6 @@ project/assembly_name="Dungeon"
 [file_customization]
 
 folder_colors={
-"res://Old_Scenes/": "purple",
 "res://Old_Scripts/": "pink"
 }
 
