@@ -12,14 +12,9 @@ config_version=5
 
 config/name="Dungeon"
 config/tags=PackedStringArray("dungeon")
-run/main_scene="res://Scenes/game_startup.tscn"
+run/main_scene="res://Scenes/map.tscn"
 config/features=PackedStringArray("4.3", "C#", "Forward Plus")
 config/icon="res://icon.svg"
-
-[autoload]
-
-Globals="*res://Scenes/globals.tscn"
-Storage="*res://Scenes/storage.tscn"
 
 [display]
 

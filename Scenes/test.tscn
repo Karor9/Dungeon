@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dx68thebhjwcl"]
+
+[ext_resource type="Script" path="res://Scripts/Test.cs" id="1_b3rae"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_l1anm"]
+noise_type = 0
+seed = 2
+
+[node name="Node" type="Node"]
+script = ExtResource("1_b3rae")
+fastNoiseLite = SubResource("FastNoiseLite_l1anm")
