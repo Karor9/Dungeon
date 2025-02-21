@@ -1,5 +1,7 @@
 using Godot;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
 
 public partial class Map : TileMapLayer
@@ -48,12 +50,12 @@ public partial class Map : TileMapLayer
 			case float f when f > -0.38 && f <= -0.18:
 				xAtlas = 1;
 				tempVal = temperature.GetNoise2D(x, y);
-				yAtlas = OceanTemperature(tempVal);
+				yAtlas = NoiseClassifier(3, tempVal);
 				break;
 			case float f when f > -0.18:
 				xAtlas = 0;
 				tempVal = temperature.GetNoise2D(x, y);
-				yAtlas = ShelfTemperature(tempVal);
+				yAtlas = NoiseClassifier(5, tempVal);
 				break;
 		}
 
@@ -61,40 +63,6 @@ public partial class Map : TileMapLayer
 			SetCell(new Vector2I(x, y), 0, new Vector2I(xAtlas, yAtlas));
     }
 
-    private int ShelfTemperature(float tempVal)
-    {
-        switch(tempVal)
-		{
-			case float f when f <= -0.34:
-				return 0;
-			case float f when f > -0.34 && f <= -0.11:
-				return 1;
-			case float f when f > -0.11 && f <= 0.11:
-				return 2;
-			case float f when f > 0.11 && f <= 0.34:
-				return 3;
-			case float f when f > 0.34:
-				return 4;
-			default:
-				return -1;
-		}
-    }
-
-
-    private int OceanTemperature(float tempVal)
-    {
-        switch(tempVal)
-		{
-			case float f when f <= -0.18:
-				return 0;
-			case float f when f > -0.18 && f <= 0.18:
-				return 1;
-			case float f when f > 0.18:
-				return 2;
-			default:
-				return -1;
-		}
-    }
 
 
     private void SetupLandTile(int x, int y)
@@ -113,23 +81,23 @@ public partial class Map : TileMapLayer
 				return;
 			case float f when f > -0.24 && f <= -0.08:
 				yAtlas = 2;
-				xAtlas = BorealHumidity(humVal);
+				xAtlas = NoiseClassifier(5, humVal);
 				break;
 			case float f when f > -0.08 && f <= 0.08:
 				yAtlas = 3;
-				xAtlas = CoolHumidity(humVal);
+				xAtlas = NoiseClassifier(6, humVal);
 				break;
 			case float f when f > 0.08 && f <= 0.24:
 				yAtlas = 4;
-				xAtlas = WarmHumidity(humVal);
+				xAtlas = NoiseClassifier(7, humVal);
 				break;
 			case float f when f > 0.24 && f <= 0.41:
 				yAtlas = 5;
-				xAtlas = WarmHumidity(humVal);
+				xAtlas = NoiseClassifier(7, humVal);
 				break;
 			case float f when f > 0.41:
 				yAtlas = 6;
-				xAtlas = TropicalHumidity(humVal);
+				xAtlas = NoiseClassifier(8, humVal);
 				break;
 		}
 
@@ -137,93 +105,29 @@ public partial class Map : TileMapLayer
 			SetCell(new Vector2I(x, y), 1, new Vector2I(xAtlas, yAtlas));
     }
 
-    private int WarmHumidity(float humVal)
-    {
-        switch(humVal)
+
+	private int NoiseClassifier(int count, float noiseValue)
+	{
+		var ranges = new Dictionary<int, float[]>()
 		{
-			case float f when f <= -0.41:
-				return 0;
-			case float f when f > -0.41 && f <= -0.24:
-				return 1;
-			case float f when f > -0.24 && f <= -0.08:
-				return 2;
-			case float f when f > -0.08 && f <= 0.08:
-				return 3;
-			case float f when f > 0.08 && f <= 0.24:
-				return 4;
-			case float f when f > 0.24 && f <= 0.41:
-				return 5;
-			case float f when f > 0.41:
-				return 6;
-			default:
-				return -1;
-		}
-    }
+			{3, new float[] { -0.18f, 0,18f }},
+			{5, new float[] { -0.34f, -0.11f, 0.11f, 0.34f }},
+			{6, new float[] { -0.38f, -0.18f, 0f, 0.18f, 0.38f }},
+			{7, new float[] { -0.41f, -0.24f, -0.08f, 0.08f, 0.24f, 0.41f }},
+			{8, new float[] { -0.43f, -0.28f, -0.14f, 0f, 0.14f, 0.28f, 0.43f }},
+		};
 
-	private int TropicalHumidity(float humVal)
-    {
-        switch(humVal)
+		if(!ranges.TryGetValue(count, out var range))
 		{
-			case float f when f <= -0.43:
-				return 0;
-			case float f when f > -0.43 && f <= -0.28:
-				return 1;
-			case float f when f > -0.28 && f <= -0.14:
-				return 2;
-			case float f when f > -0.14 && f <= 0:
-				return 3;
-			case float f when f > 0 && f <= 0.14:
-				return 4;
-			case float f when f > 0.14 && f <= 0.28:
-				return 5;
-			case float f when f > 0.28 && f <= 0.43:
-				return 6;
-			case float f when f > 0.43:
-				return 7;
-			default:
-				return -1;
+			throw new ArgumentException("Invalid range");
 		}
-    }
 
-
-    private int CoolHumidity(float humVal)
-    {
-        switch(humVal)
+		for (int i = 0; i < range.Length; i++)
 		{
-			case float f when f <= -0.38:
-				return 0;
-			case float f when f > -0.38 && f <= -0.18:
-				return 1;
-			case float f when f > -0.18 && f <= 0:
-				return 2;
-			case float f when f > 0 && f <= 0.18:
-				return 3;
-			case float f when f > 0.18 && f <= 0.38:
-				return 4;
-			case float f when f > 0.38:
-				return 5;
-			default:
-				return -1;
+			if(noiseValue <= range[i])
+				return i;
 		}
-    }
 
-
-    private int BorealHumidity(float humVal)
-    {
-        switch(humVal)
-		{
-			case float f when f <= -0.34:
-				return 0;
-			case float f when f > -0.34 && f <= -0.11:
-				return 1;
-			case float f when f > -0.11 && f <= 0.11:
-				return 2;
-			case float f when f > 0.11 && f <= 0.34:
-				return 3;
-			case float f when f > 0.34:
-				return 4;
-			default:
-				return -1;
-		}
-    }
+		return range.Length;
+	}
 }
